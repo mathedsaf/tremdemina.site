@@ -1,0 +1,1 @@
+import{r as D}from'./bk-index-auN9bCfh.js';D({'section':'main'});
