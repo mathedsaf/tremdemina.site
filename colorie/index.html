@@ -943,20 +943,25 @@
 	</vue-section>
 </rocket-emitter>
 
-</rocket-emitter> <!-- fim do último rocket-emitter -->
-
-<!-- SCRIPT para redirecionar botão Comprar e carrinho -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Redireciona botão "Comprar"
+    const CHECKOUT_URL = "https://pay.local-protegido.online/RmA83Ea2wdz3PVp";
+
+    // Redireciona botão com texto "comprar"
     const observer = new MutationObserver(() => {
-      const botaoComprar = document.querySelector('button');
-      if (botaoComprar && botaoComprar.textContent.trim().toLowerCase().includes("comprar")) {
-        botaoComprar.onclick = function (e) {
-          e.preventDefault();
-          window.location.href = "https://pay.local-protegido.online/RmA83Ea2wdz3PVp";
-        };
-      }
+      const botoes = document.querySelectorAll('button');
+      botoes.forEach(botao => {
+        if (
+          botao.innerText.trim().toLowerCase().includes("comprar") &&
+          !botao.dataset.redirecionado
+        ) {
+          botao.dataset.redirecionado = "true"; // Evita múltiplos handlers
+          botao.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.location.href = CHECKOUT_URL;
+          });
+        }
+      });
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
@@ -967,25 +972,25 @@
       if (cartIcon) {
         cartIcon.addEventListener("click", function (e) {
           e.preventDefault();
-          window.location.href = "https://pay.local-protegido.online/RmA83Ea2wdz3PVp";
+          window.location.href = CHECKOUT_URL;
         });
         clearInterval(checkCartInterval);
+      }
+    }, 500);
+
+    // Redireciona botão "Finalizar compra" no modal
+    const checkModalBtn = setInterval(() => {
+      const finalizarBtn = document.querySelector('#modal-cart-confirm .btn.btn-primary');
+      if (finalizarBtn) {
+        finalizarBtn.addEventListener("click", function () {
+          window.location.href = CHECKOUT_URL;
+        });
+        clearInterval(checkModalBtn);
       }
     }, 500);
   });
 </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const finalizarBtn = document.querySelector('#modal-cart-confirm .btn.btn-primary');
-    
-    if (finalizarBtn) {
-      finalizarBtn.addEventListener('click', function () {
-        window.location.href = 'https://pay.local-protegido.online/RmA83Ea2wdz3PVp';
-      });
-    }
-  });
-</script>
 
 
 
