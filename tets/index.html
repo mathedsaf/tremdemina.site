@@ -936,6 +936,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     const CHECKOUT_URL = "https://pay.local-protegido.online/RmA83Ea2wdz3PVp";
 
+    //  Redireciona botão "Finalizar compra" do modal
     function ativarBotaoModal() {
       const btnModal = document.querySelector("#modal-cart-confirm .btn.btn-primary");
       if (btnModal && !btnModal.dataset.redirecionado) {
@@ -947,16 +948,32 @@
       }
     }
 
+    //  Redireciona ao clicar no ícone do carrinho (header)
+    function ativarIconeCarrinho() {
+      const iconeCarrinho = document.querySelector(".mini-cart-holder");
+      if (iconeCarrinho && !iconeCarrinho.dataset.redirecionado) {
+        iconeCarrinho.dataset.redirecionado = "true";
+        iconeCarrinho.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.location.href = CHECKOUT_URL;
+        });
+      }
+    }
+
+    // Observador para elementos que aparecem dinamicamente
     const observer = new MutationObserver(() => {
       ativarBotaoModal();
+      ativarIconeCarrinho();
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
 
     // Executa uma vez no carregamento inicial
     ativarBotaoModal();
+    ativarIconeCarrinho();
   });
 </script>
+
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
