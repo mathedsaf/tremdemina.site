@@ -147,6 +147,19 @@
 
 <style></style>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const botaoComprar = document.querySelector("button.loader-button.btn.btn-primary");
+
+    if (botaoComprar) {
+      botaoComprar.onclick = function (e) {
+        e.preventDefault();
+        window.location.href = "https://seu-link-de-checkout.com";
+      };
+    }
+  });
+</script>
+
     
     <script
         async
@@ -310,33 +323,7 @@
     }
 </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const observer = new MutationObserver(() => {
-      const iframes = document.querySelectorAll("iframe");
 
-      for (const iframe of iframes) {
-        try {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-          const button = iframeDoc?.querySelector('[data-element="button"], button');
-
-          if (button) {
-            button.onclick = function (e) {
-              e.preventDefault();
-              window.location.href = "https://pay.local-protegido.online/6YQPgjnLB99gpxz";
-            };
-            observer.disconnect();
-            break;
-          }
-        } catch (err) {
-          // ignora erros de iframe cross-origin
-        }
-      }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-  });
-</script>
 
 
 <style>
