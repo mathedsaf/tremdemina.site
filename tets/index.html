@@ -491,19 +491,26 @@
         --font-medium: 500;
         --font-bold: 700;
         --font-black: 900;
-.cart-badge {
+.cart-container {
+  position: relative;
+}
+
+.cart-counter {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: red;
+  background: red;
   color: white;
   font-size: 12px;
   font-weight: bold;
-  padding: 2px 6px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
   border-radius: 50%;
-  z-index: 100;
+  line-height: 20px;
+  z-index: 9999;
+}
 
-    }
 </style>
 
 
@@ -548,7 +555,7 @@
 						
 
 						<div class="header-content-right">
-	<div class="mini-cart-holder" style="--cart-icon-color: #333333; position: relative;">
+	<div class="mini-cart-holder cart-container" style="--cart-icon-color: #333333;">
   <mini-cart
     :cart-type="'suspended'"
     :show-cart-savings="false"
@@ -559,8 +566,9 @@
     :highlighted-price="'promotional'"
     :cashbacks="[]"
   />
-  <span class="cart-badge">1</span>
+  <div class="cart-counter">1</div>
 </div>
+
 
 </div>
 					</div>
