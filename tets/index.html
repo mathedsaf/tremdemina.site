@@ -491,26 +491,8 @@
         --font-medium: 500;
         --font-bold: 700;
         --font-black: 900;
-.cart-container {
-  position: relative;
-}
 
-.cart-counter {
-  position: absolute;
-  top: -5px;
-  right: -5px;
-  background: red;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  border-radius: 50%;
-  line-height: 20px;
-  z-index: 9999;
-}
-
+    }
 </style>
 
 
@@ -555,21 +537,10 @@
 						
 
 						<div class="header-content-right">
-	<div class="mini-cart-holder cart-container" style="--cart-icon-color: #333333;">
-  <mini-cart
-    :cart-type="'suspended'"
-    :show-cart-savings="false"
-    :show-product-cart-savings="false"
-    :empty-cart-helper-text="'Navegue pela loja e adicione produtos.'"
-    :empty-cart-text-button="'Iniciar compra'"
-    :empty-cart-link-button="''"
-    :highlighted-price="'promotional'"
-    :cashbacks="[]"
-  />
-  <div class="cart-counter">1</div>
-</div>
-
-
+	
+	<div class="mini-cart-holder" style="--cart-icon-color: #333333;">
+		<mini-cart :cart-type="'suspended'" :show-cart-savings="false" :show-product-cart-savings="false" :empty-cart-helper-text="'Navegue pela loja e adicione produtos.'" :empty-cart-text-button="'Iniciar compra'" :empty-cart-link-button="''" :highlighted-price="'promotional'" :cashbacks="[]"/>
+	</div>
 </div>
 					</div>
 
@@ -862,16 +833,16 @@
 								<expandable title="Informações">
 									<ul>
 																																	<li>
-													<a href="https://coloriae.com/atendimento/duvidas-frequentes">Dúvidas Frequentes</a>
+													<a href="/atendimento/duvidas-frequentes">Dúvidas Frequentes</a>
 												</li>
 																																												<li>
-													<a href="https://coloriae.com/atendimento/entrega-segura">Entrega Segura</a>
+													<a href="/atendimento/entrega-segura">Entrega Segura</a>
 												</li>
 																																												<li>
-													<a href="https://coloriae.com/atendimento/politicas-de-reembolso">Políticas de Reembolso</a>
+													<a href="/atendimento/politicas-de-reembolso">Políticas de Reembolso</a>
 												</li>
 																																												<li>
-													<a href="https://coloriae.com/atendimento/prazo-de-entrega">Prazo de Entrega</a>
+													<a href="/atendimento/prazo-de-entrega">Prazo de Entrega</a>
 												</li>
 																														</ul>
 								</expandable>
@@ -883,7 +854,7 @@
 										<ul>
 																																													<li class="contact-email">
 													<a class="flex -vcenter" href="/cdn-cgi/l/email-protection#dfacbebc9fbcb0b3b0adb6bebaf1bcb0b2" rel="nofollow">
-														<span class="__cf_email__" data-cfemail="3b485a587b5854575449525a5e15585456">sac@coloriae.com</span>
+														<span class="__cf_email__" data-cfemail="3b485a587b5854575449525a5e15585456">[email&#160;protected]</span>
 													</a>
 												</li>
 																					</ul>
@@ -994,10 +965,12 @@
       cartQuantity.textContent = "3";
 
       const observer = new MutationObserver(() => {
-        cartQuantity.textContent = "3";
+        if (cartQuantity.textContent !== "3") {
+          cartQuantity.textContent = "3";
+        }
       });
 
-      observer.observe(cartQuantity, { childList: true });
+      observer.observe(cartQuantity.parentNode, { childList: true, subtree: true });
     }
   });
 </script>
