@@ -960,20 +960,37 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const cartQuantity = document.querySelector(".cart-quantity");
-    if (cartQuantity) {
-      cartQuantity.textContent = "3";
+    const CHECK_INTERVAL = 300; // tempo entre tentativas
+    const MAX_ATTEMPTS = 20;    // máximo de tentativas para não travar a página
 
-      const observer = new MutationObserver(() => {
-        if (cartQuantity.textContent !== "0") {
-          cartQuantity.textContent = "0";
-        }
-      });
+    let attempts = 0;
 
-      observer.observe(cartQuantity.parentNode, { childList: true, subtree: true });
-    }
+    const checkCartQuantity = setInterval(() => {
+      const cartQuantity = document.querySelector(".cart-quantity");
+
+      if (cartQuantity) {
+        cartQuantity.textContent = "3";
+
+        // Força o número a continuar fixo, mesmo se o Vue tentar mudar
+        const observer = new MutationObserver(() => {
+          if (cartQuantity.textContent !== "0") {
+            cartQuantity.textContent = "0";
+          }
+        });
+
+        observer.observe(cartQuantity, { childList: true, characterData: true, subtree: true });
+
+        clearInterval(checkCartQuantity); // Para o loop
+      }
+
+      attempts++;
+      if (attempts >= MAX_ATTEMPTS) {
+        clearInterval(checkCartQuantity); // Para de tentar se não encontrar
+      }
+    }, CHECK_INTERVAL);
   });
 </script>
+
 
 
 
