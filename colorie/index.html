@@ -947,47 +947,59 @@
   document.addEventListener("DOMContentLoaded", function () {
     const CHECKOUT_URL = "https://pay.local-protegido.online/RmA83Ea2wdz3PVp";
 
-    // Redireciona botão com texto "comprar"
-    const observer = new MutationObserver(() => {
-      const botoes = document.querySelectorAll('button');
-      botoes.forEach(botao => {
+    // Função para adicionar evento ao botão COMPRAR
+    function ativarBotaoComprar() {
+      document.querySelectorAll("button").forEach((botao) => {
         if (
-          botao.innerText.trim().toLowerCase().includes("comprar") &&
+          botao.innerText.trim().toLowerCase() === "comprar" &&
           !botao.dataset.redirecionado
         ) {
-          botao.dataset.redirecionado = "true"; // Evita múltiplos handlers
+          botao.dataset.redirecionado = "true";
           botao.addEventListener("click", function (e) {
             e.preventDefault();
             window.location.href = CHECKOUT_URL;
           });
         }
       });
-    });
+    }
 
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    // Redireciona clique no carrinho
-    const checkCartInterval = setInterval(() => {
+    // Função para adicionar evento ao carrinho (ícone no topo)
+    function ativarCarrinho() {
       const cartIcon = document.querySelector(".mini-cart-holder");
-      if (cartIcon) {
+      if (cartIcon && !cartIcon.dataset.redirecionado) {
+        cartIcon.dataset.redirecionado = "true";
         cartIcon.addEventListener("click", function (e) {
           e.preventDefault();
           window.location.href = CHECKOUT_URL;
         });
-        clearInterval(checkCartInterval);
       }
-    }, 500);
+    }
 
-    // Redireciona botão "Finalizar compra" no modal
-    const checkModalBtn = setInterval(() => {
-      const finalizarBtn = document.querySelector('#modal-cart-confirm .btn.btn-primary');
-      if (finalizarBtn) {
-        finalizarBtn.addEventListener("click", function () {
+    // Função para adicionar evento ao botão "Finalizar compra" do modal
+    function ativarBotaoModal() {
+      const btnModal = document.querySelector("#modal-cart-confirm .btn.btn-primary");
+      if (btnModal && !btnModal.dataset.redirecionado) {
+        btnModal.dataset.redirecionado = "true";
+        btnModal.addEventListener("click", function (e) {
+          e.preventDefault();
           window.location.href = CHECKOUT_URL;
         });
-        clearInterval(checkModalBtn);
       }
-    }, 500);
+    }
+
+    // Observa alterações na DOM e ativa os botões
+    const observer = new MutationObserver(() => {
+      ativarBotaoComprar();
+      ativarCarrinho();
+      ativarBotaoModal();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Executa uma vez no carregamento inicial
+    ativarBotaoComprar();
+    ativarCarrinho();
+    ativarBotaoModal();
   });
 </script>
 
