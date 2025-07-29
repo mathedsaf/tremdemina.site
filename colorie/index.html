@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -532,9 +534,7 @@
 													</div>
 
 						
-						<div class="holder-search">
-															<search-bar></search-bar>
-													</div>
+						
 
 						<div class="header-content-right">
 	
@@ -853,8 +853,8 @@
 									<expandable title="Atendimento">
 										<ul>
 																																													<li class="contact-email">
-													<a class="flex -vcenter" href="mailto:sac@coloriae.com" rel="nofollow">
-														sac@coloriae.com
+													<a class="flex -vcenter" href="/cdn-cgi/l/email-protection#dfacbebc9fbcb0b3b0adb6bebaf1bcb0b2" rel="nofollow">
+														<span class="__cf_email__" data-cfemail="3b485a587b5854575449525a5e15585456">[email&#160;protected]</span>
 													</a>
 												</li>
 																					</ul>
@@ -936,7 +936,6 @@
   document.addEventListener("DOMContentLoaded", function () {
     const CHECKOUT_URL = "https://pay.local-protegido.online/RmA83Ea2wdz3PVp";
 
-    // 👉 Redireciona botão "Finalizar compra" do modal
     function ativarBotaoModal() {
       const btnModal = document.querySelector("#modal-cart-confirm .btn.btn-primary");
       if (btnModal && !btnModal.dataset.redirecionado) {
@@ -948,31 +947,17 @@
       }
     }
 
-    // 👉 Redireciona ao clicar no ícone do carrinho (header)
-    function ativarIconeCarrinho() {
-      const iconeCarrinho = document.querySelector(".mini-cart-holder");
-      if (iconeCarrinho && !iconeCarrinho.dataset.redirecionado) {
-        iconeCarrinho.dataset.redirecionado = "true";
-        iconeCarrinho.addEventListener("click", function (e) {
-          e.preventDefault();
-          window.location.href = CHECKOUT_URL;
-        });
-      }
-    }
-
-    // Observador para elementos que aparecem dinamicamente
     const observer = new MutationObserver(() => {
       ativarBotaoModal();
-      ativarIconeCarrinho();
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
 
     // Executa uma vez no carregamento inicial
     ativarBotaoModal();
-    ativarIconeCarrinho();
   });
 </script>
+
 
 
 <script>
