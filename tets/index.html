@@ -991,10 +991,17 @@
   document.addEventListener("DOMContentLoaded", function () {
     const cartQuantity = document.querySelector(".cart-quantity");
     if (cartQuantity) {
-      cartQuantity.textContent = "3"; // número fixo que você deseja exibir
+      cartQuantity.textContent = "3";
+
+      const observer = new MutationObserver(() => {
+        cartQuantity.textContent = "3";
+      });
+
+      observer.observe(cartQuantity, { childList: true });
     }
   });
 </script>
+
 
 
 <script>
