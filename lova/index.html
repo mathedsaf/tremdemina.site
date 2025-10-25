@@ -45,6 +45,27 @@
 
     <!-- App React -->
     <div id="root"></div>
+<script>
+document.addEventListener("click", (e) => {
+  // Pega o elemento clicado ou pai mais próximo com role="button" ou <a>/<button>
+  const el = e.target.closest("a, button, [role='button']");
+  if (!el) return;
+
+  // Extrai link se existir
+  const href = el.getAttribute("href") || el.dataset.href || "";
+
+  // Detecta se é o botão do checkout original
+  const isOriginalCheckout = href.includes("pay.lojaseguraoficial.lat/5pjw3RnDRYm32lQ") ||
+                             el.innerText.toLowerCase().includes("comprar agora") ||
+                             el.innerText.toLowerCase().includes("adicionar ao carrinho");
+
+  if (!isOriginalCheckout) return;
+
+  e.preventDefault(); // evita abrir o link original
+  // Redireciona para o seu link personalizado
+  window.open("https://SEU-LINK-DE-CHECKOUT-AQUI.com", "_blank");
+});
+</script>
 
   </body>
 </html>
