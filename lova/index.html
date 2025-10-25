@@ -29,7 +29,36 @@
     <script defer src="https://escrivaninha-27058.lovable.app/~flock.js" data-proxy-url="https://escrivaninha-27058.lovable.app/~api/analytics"></script><meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/74cc0d60-ee4b-4dee-9df6-211f870be978/id-preview-a1727533--76a22ffe-f2a8-4cdf-9c9e-2affb820aff9.lovable.app-1760950867356.png" /></head>
 
 
+<script>
+function replaceCheckoutButtons() {
+  // Seleciona todos os botões pelo texto ou classe
+  const buttons = document.querySelectorAll('button, [role="button"]');
 
+  buttons.forEach(btn => {
+    if (btn.innerText.toLowerCase().includes("comprar agora") ||
+        btn.innerText.toLowerCase().includes("adicionar ao carrinho")) {
+      // Remove o evento antigo
+      const oldBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(oldBtn, btn);
+
+      // Adiciona seu evento
+      oldBtn.addEventListener("click", e => {
+        e.preventDefault();
+        window.open("https://SEU-LINK-DE-CHECKOUT-AQUI.com", "_blank");
+      });
+    }
+  });
+}
+
+// Executa logo após a página carregar
+window.addEventListener("load", () => {
+  replaceCheckoutButtons();
+
+  // Monitora o DOM para novos botões que podem ser renderizados pelo React
+  const observer = new MutationObserver(replaceCheckoutButtons);
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+</script>
 
   <body>
     <!-- Fallback estático para ambientes que bloqueiam JS/ESM (ex: cloakers) -->
