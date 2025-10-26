@@ -1,0 +1,21 @@
+{
+  "name": "Kit Limpeza Pesada OMO - Oferta Exclusiva",
+  "short_name": "OMO Store",
+  "description": "Kit Limpeza Pesada Completo com 26 Itens OMO + Ypê com desconto exclusivo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/omo-kit-1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "lifestyle"],
+  "lang": "pt-BR",
+  "dir": "ltr"
+}
