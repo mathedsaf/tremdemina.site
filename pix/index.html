@@ -584,27 +584,31 @@
   </div>
 
   <script>
-    const pixCode = "00020101021226870014br.gov.bcb.pix2565qrcode.santsbank.com/dynamic/b7351192-d676-4f4e-a7a0-1f5637d3025f5204000053039865802BR5914PAGAFACIL LTDA6009Sao Paulo62070503***6304F86E";
+const pixCode = "00020101021226870014br.gov.bcb.pix2565qrcode.santsbank.com/dynamic/b7351192-d676-4f4e-a7a0-1f5637d3025f5204000053039865802BR5914PAGAFACIL LTDA6009Sao Paulo62070503***6304F86E";
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const pixContainer = document.getElementById("pixLoading");
+document.addEventListener("DOMContentLoaded", () => {
+  const pixContainer = document.getElementById("pixLoading");
 
-      if (pixContainer) {
-        pixContainer.innerHTML = `
-          <p class="pix-code">
-            ${pixCode}
-          </p>
-          <button id="copyPix">
-            Copiar Código PIX
-          </button>
-        `;
+  if (pixContainer) {
+    pixContainer.innerHTML = `
+      <p class="pix-code">
+        ${pixCode}
+      </p>
+      <button id="copyPix">
+        Copiar Código PIX
+      </button>
+    `;
 
-        document.getElementById("copyPix").addEventListener("click", () => {
-          navigator.clipboard.writeText(pixCode);
-          alert("Código PIX copiado!");
-        });
-      }
+    document.getElementById("copyPix").addEventListener("click", () => {
+      navigator.clipboard.writeText(pixCode);
+      // Removido o alert()
+      // Opcional: atualizar o texto do botão
+      const btn = document.getElementById("copyPix");
+      btn.innerText = "Copiado!";
+      setTimeout(() => btn.innerText = "Copiar Código PIX", 1500);
     });
+  }
+});
   </script>
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"062ebd0933b94425bb2fcbc56806cfbb","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
