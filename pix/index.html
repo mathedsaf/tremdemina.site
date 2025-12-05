@@ -1396,5 +1396,53 @@
     });
   </script>
 
+  <script>
+document.addEventListener("DOMContentLoaded", async () => {
+  
+  const params = new URLSearchParams(window.location.search);
+
+  const nome = params.get("name");
+  const cpf = params.get("cpf");
+  const telefone = params.get("phone");
+  const produto = params.get("produto");
+  const preco = params.get("preco");
+
+  async function gerarPix() {
+    try {
+      const response = await fetch("https://api.mangofy.com/pix", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer vstm8q3mbab9a813b7e7322014158b67511b7ede339d174b78cc5a84b81241d00ef6d2ae"
+        },
+        body: JSON.stringify({
+          description: produto,
+          amount: Number(preco),
+          metadata: {
+            nome,
+            cpf,
+            telefone
+          }
+        })
+      });
+
+      const data = await response.json();
+
+      // Exibe o QR Code
+      document.getElementById("qrImage").src = data.qr_code;
+
+      // Exibe o código copia e cola
+      document.getElementById("pixCode").textContent = data.copy_paste;
+
+    } catch (error) {
+      console.error("Erro ao gerar PIX:", error);
+      alert("Erro ao gerar PIX!");
+    }
+  }
+
+  gerarPix();
+});
+</script>
+
 
 </body></html>
