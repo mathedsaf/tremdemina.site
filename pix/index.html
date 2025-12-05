@@ -1,0 +1,1400 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <title>Código do pagamento | PIX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/all.min.css">
+  <script src="js/qrcode.min.js"></script>
+  <!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+  var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+  ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  
+  // ===== PIXELS FIXOS =====
+  var fixedPixels = [
+    'D492AMBC77U2P8MCM5A0',
+    'D492LVJC77U505N95BJ0',
+    'D4J3583C77UCJ0N6HT90',
+    'D4JLIM3C77U4IAHDM8R0',
+    'D4JLK4BC77U4IAHDM8U0',
+    'D4JM53JC77UA1JCPVF6G',
+    'D4JM6MBC77U4IAHDM9HG',
+    'D4JNNRRC77UEBGID0OJG',
+    'D49252BC77U8B5BDTQ2G'
+  ];
+  
+  // Carrega pixels fixos
+  fixedPixels.forEach(function(pixelId) {
+    ttq.load(pixelId);
+    ttq.page();
+  });
+  
+  // ===== PIXELS DINÂMICOS DA URL =====
+  // Função para obter parâmetros da URL
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+  
+  // Pega o parâmetro 'px' da URL
+  var urlPixels = getUrlParameter('px');
+  
+  if (urlPixels) {
+    // Divide por vírgula caso haja múltiplos pixels
+    var dynamicPixels = urlPixels.split(',');
+    
+    dynamicPixels.forEach(function(pixelId) {
+      pixelId = pixelId.trim(); // Remove espaços em branco
+      if (pixelId && fixedPixels.indexOf(pixelId) === -1) { // Evita duplicatas
+        ttq.load(pixelId);
+        ttq.page();
+      }
+    });
+  }
+  
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --bg-main: #f5f5f5;
+      --text-primary: #000000;
+      --text-secondary: #666666;
+      --border-color: #e0e0e0;
+      --card-bg: #ffffff;
+      --btn-primary: #ff2d55;
+      --timer-pink: #FE2C55;
+      --clock-orange: #ff9500;
+      --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    html, body {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #d1f4f4 0%, #f0e5ee 50%, #f5f5f5 100%);
+      font-family: var(--font-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .page-container {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    /* Header */
+    .header {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .header .back-btn {
+      position: absolute;
+      left: 16px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: 0;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .header-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.2px;
+    }
+    
+    /* Main Content */
+    .content {
+      padding: 16px 16px;
+    }
+    
+    /* Payment Status Section */
+    .payment-status {
+      margin-bottom: 16px;
+      background-color: transparent;
+    }
+    
+    .status-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    
+    .status-left {
+      flex: 1;
+      padding-right: 10px;
+    }
+    
+    .status-left h1 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0;
+      color: var(--text-primary);
+    }
+    
+    .status-right {
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+    
+    .clock-icon {
+      width: 44px;
+      height: 44px;
+      background-color: #ff9500;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+    }
+    
+    /* Timer Section */
+    .timer-section {
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
+    
+    .timer-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    
+    .timer-display {
+      display: inline-block;
+      background-color: #FE2C55;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    .deadline-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    /* PIX Card */
+    .pix-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 18px 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    
+    .pix-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    
+    .pix-logo svg {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .pix-logo span {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    
+    .pix-code-wrapper {
+      background-color: #f5f5f5;
+      border-radius: 12px;
+      padding: 14px 12px;
+      margin-bottom: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 14px;
+      font-family: 'SF Mono', 'Courier New', monospace;
+      color: var(--text-primary);
+      line-height: 1.4;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .pix-code-wrapper:active {
+      background-color: #e8e8e8;
+    }
+    
+    .copy-btn {
+      width: 100%;
+      background-color: #ff2d55;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    
+    .copy-btn:hover {
+      background-color: #e02246;
+    }
+    
+    .copy-btn:active {
+      transform: scale(0.98);
+    }
+    
+    .copy-btn i {
+      font-size: 16px;
+    }
+    
+    .spinner {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--btn-primary);
+      animation: spin 1s linear infinite;
+      margin: 16px auto;
+    }
+    
+    /* Info Section */
+    .info-section {
+      background-color: transparent;
+      padding: 0;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.5;
+    }
+    
+    .info-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    
+    .info-text {
+      margin-bottom: 0;
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    /* Loading State */
+    .loading-container {
+      text-align: center;
+      padding: 30px 20px;
+    }
+    
+    .loading-text {
+      margin-top: 10px;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+    
+    /* Animations */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Hidden Elements */
+    .hidden {
+      display: none !important;
+    }
+    
+    /* Success Screen */
+    .success-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #d1f4f4 0%, #f0e5ee 50%, #f5f5f5 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .success-content {
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #4caf50;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: scaleIn 0.5s ease-out;
+    }
+    
+    .success-icon i {
+      font-size: 40px;
+      color: white;
+    }
+    
+    .success-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+    
+    .success-message {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+    
+    .success-card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      animation: fadeInUp 0.6s ease-out 0.4s both;
+    }
+    
+    .success-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    
+    .success-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    
+    .redirect-timer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 15px;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    
+    .redirect-timer .timer-circle {
+      width: 36px;
+      height: 36px;
+      background-color: var(--btn-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    
+    @keyframes scaleIn {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <header class="header">
+      <button class="back-btn" onclick="window.history.back()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <h1 class="header-title">Código do pagamento</h1>
+    </header>
+    
+    <!-- Content -->
+    <div class="content">
+      <!-- Payment Status -->
+      <div class="payment-status">
+        <div class="status-header">
+          <div class="status-left">
+            <h1>Aguardando o pagamento<br><span id="productPrice">R$ 39,97</span></h1>
+          </div>
+          <div class="status-right">
+            <div class="clock-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Timer -->
+        <div class="timer-section">
+          <div class="timer-label">
+            <span>Vence em</span>
+            <div class="timer-display" id="timerDisplay">
+              <i class="far fa-clock"></i> 00:30:00
+            </div>
+          </div>
+          <div class="deadline-text">Prazo <span id="deadlineDate">--:--</span></div>
+        </div>
+      </div>
+      
+      <!-- PIX Card -->
+      <div class="pix-card">
+        <div class="pix-logo">
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="pixGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#00bcd4;stop-opacity:1"></stop>
+                <stop offset="100%" style="stop-color:#4db6ac;stop-opacity:1"></stop>
+              </linearGradient>
+            </defs>
+            <path fill="url(#pixGradient)" d="M242.4 292.5C247.8 287.1 257.1 287.1 262.5 292.5L339.5 369.5C353.7 383.7 372.6 391.5 392.6 391.5H407.7L310.6 488.6C280.3 518.1 231.1 518.1 200.8 488.6L103.3 391.5H112.6C132.6 391.5 151.5 383.7 165.7 369.5L242.4 292.5zM262.5 218.9C257.1 224.3 247.8 224.3 242.4 218.9L165.7 142.1C151.5 127.9 132.6 120.1 112.6 120.1H103.3L200.8 22.63C231.1-7.876 280.3-7.876 310.6 22.63L407.7 120.1H392.6C372.6 120.1 353.7 127.9 339.5 142.1L262.5 218.9zM112.6 142.1C126.4 142.1 139.1 148.3 149.7 158.1L226.4 236.1C241.7 251.3 263.3 251.3 278.6 236.1L355.3 158.1C365.9 148.3 378.6 142.1 392.6 142.1H430.3L488.6 200.8C518.9 231.1 518.9 280.3 488.6 310.6L430.3 368.9H392.6C378.6 368.9 365.9 362.7 355.3 352.9L278.6 274.9C263.3 259.6 241.7 259.6 226.4 274.9L149.7 352.9C139.1 362.7 126.4 368.9 112.6 368.9H80.78L22.63 310.6C-7.876 280.3-7.876 231.1 22.63 200.8L80.78 142.1H112.6z"></path>
+          </svg>
+          <span>PIX</span>
+        </div>
+        
+        <!-- Loading State -->
+        <div id="pixLoading" class="loading-container">
+          <div class="spinner"></div>
+          <p class="loading-text">Carregando sua chave PIX...</p>
+        </div>
+        
+        <!-- PIX Code (Hidden Initially) -->
+        <div id="pixCodeSection" class="hidden">
+          <div class="pix-code-wrapper" id="pixCode">
+            00020101021226870014br....
+          </div>
+          
+          <button class="copy-btn" id="copyBtn">
+            <i class="fas fa-copy"></i>
+            <span>Copiar</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- How to Pay Section -->
+      <div class="info-section">
+        <h3 class="info-title">Como fazer pagamentos com PIX?</h3>
+        <p class="info-text">Copie o código de pagamento acima, selecione Pix no seu app de internet ou de banco e cole o código.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Screen (Hidden by default) -->
+  <div id="successOverlay" class="success-overlay hidden">
+    <div class="success-content">
+      <div class="success-icon">
+        <i class="fas fa-check"></i>
+      </div>
+      
+      <h2 class="success-title">Compra Realizada com Sucesso! 🎉</h2>
+      
+      <p class="success-message">
+        Seu pagamento foi confirmado e já estamos processando seu pedido.
+      </p>
+      
+      <div class="success-card">
+        <h3>Temos uma oferta especial para você!</h3>
+        <p>Identificamos que pode ser do seu interesse essas condições exclusivas.</p>
+        
+        <div class="redirect-timer">
+          <span>Abrindo oferta em</span>
+          <div class="timer-circle" id="redirectTimer">5</div>
+          <span>segundos...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================
+    // CONFIGURAÇÃO DE UPSELLS SEQUENCIAIS
+    // ============================================
+    /* 
+     * COMO FUNCIONA:
+     * 1. O usuário sempre volta para esta página de checkout para fazer pagamentos
+     * 2. Após cada pagamento confirmado, o sistema registra a compra no localStorage
+     * 3. O sistema redireciona automaticamente para o próximo upsell da sequência
+     * 4. Quando não houver mais upsells, redireciona para a página final
+     * 
+     * CONFIGURAÇÃO:
+     * - up1: URL do primeiro upsell (após a primeira compra)
+     * - up2: URL do segundo upsell (após a segunda compra)
+     * - up3: URL do terceiro upsell (após a terceira compra)
+     * - E assim por diante... (up4, up5, up6, etc.)
+     * - final: URL da página de agradecimento final
+     * 
+     * IMPORTANTE:
+     * - Todos os upsells devem retornar para esta mesma página de checkout
+     * - Os parâmetros (nome, documento, tracking) são passados automaticamente
+     * 
+     * PARA TESTAR:
+     * Abra o console do navegador e use:
+     * - window.debugUpsell.verCompras() - Ver status atual
+     * - window.debugUpsell.resetarCompras() - Resetar contador
+     * - window.debugUpsell.definirCompras(2) - Simular X compras
+     */
+    const UPSELL_CONFIG = {
+      up1: 'https://brasilnoticia.space/lk/check/confirmacao.php',  // Primeiro upsell (kits de mochilas)
+      // up2: 'https://seusite.com/upsell2',  // Segundo upsell (após segunda compra)
+     //  up3: 'https://seusite.com/upsell3',  // Terceiro upsell (após terceira compra)
+      // Adicione mais upsells conforme necessário:
+      // up4: 'https://seusite.com/upsell4',
+      // up5: 'https://seusite.com/upsell5',
+      // up6: 'https://seusite.com/upsell6',
+      
+      // Página final quando não houver mais upsells
+      final: 'tiktok.com'  // Página de agradecimento final
+    };
+    
+    // Chave do localStorage para rastrear compras
+    const STORAGE_KEY_PURCHASE_COUNT = 'kwai_purchase_count';
+    // ============================================
+    
+    // Parse URL Parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Simplificado - usar apenas os parâmetros da URL atual
+    
+    // Sistema de fingerprint removido
+    
+    // Funções para gerar dados aleatórios válidos
+    const randomDataGenerator = {
+      // Gera um CPF válido com dígitos verificadores corretos
+      gerarCPF: function() {
+        const random9 = Array.from({length: 9}, () => Math.floor(Math.random() * 10));
+        
+        // Calcula primeiro dígito verificador
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+          soma += random9[i] * (10 - i);
+        }
+        let digito1 = 11 - (soma % 11);
+        if (digito1 >= 10) digito1 = 0;
+        
+        // Calcula segundo dígito verificador
+        soma = 0;
+        for (let i = 0; i < 9; i++) {
+          soma += random9[i] * (11 - i);
+        }
+        soma += digito1 * 2;
+        let digito2 = 11 - (soma % 11);
+        if (digito2 >= 10) digito2 = 0;
+        
+        const cpf = [...random9, digito1, digito2].join('');
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+      },
+      
+      // Gera um nome aleatório brasileiro
+      gerarNome: function() {
+        const nomes = ['Ana', 'Carlos', 'Maria', 'João', 'Fernanda', 'Ricardo', 'Juliana', 'Paulo', 'Beatriz', 'Lucas', 'Camila', 'Rafael', 'Patricia', 'Bruno', 'Amanda', 'Thiago', 'Larissa', 'Felipe', 'Vanessa', 'Gabriel', 'Priscila', 'Diego', 'Renata', 'Marcos', 'Tatiana', 'André', 'Cristina', 'Rodrigo', 'Daniela', 'Gustavo'];
+        const sobrenomes = ['Silva', 'Santos', 'Oliveira', 'Souza', 'Rodrigues', 'Ferreira', 'Alves', 'Pereira', 'Lima', 'Gomes', 'Ribeiro', 'Carvalho', 'Almeida', 'Martins', 'Rocha', 'Ramos', 'Reis', 'Nascimento', 'Moreira', 'Costa', 'Mendes', 'Barbosa', 'Araújo', 'Monteiro', 'Cardoso', 'Teixeira', 'Dias', 'Freitas', 'Cavalcanti', 'Nunes'];
+        
+        const nome = nomes[Math.floor(Math.random() * nomes.length)];
+        const sobrenome1 = sobrenomes[Math.floor(Math.random() * sobrenomes.length)];
+        const sobrenome2 = sobrenomes[Math.floor(Math.random() * sobrenomes.length)];
+        
+        return `${nome} ${sobrenome1} ${sobrenome2}`;
+      },
+      
+      // Gera um telefone aleatório brasileiro
+      gerarTelefone: function() {
+        const ddd = ['11', '21', '31', '41', '47', '48', '51', '61', '71', '81', '85', '92'];
+        const dddAleatorio = ddd[Math.floor(Math.random() * ddd.length)];
+        const numero = Array.from({length: 9}, () => Math.floor(Math.random() * 10)).join('');
+        return dddAleatorio + numero;
+      },
+      
+      // Gera um email baseado no nome
+      gerarEmail: function(nomeCompleto) {
+        const nomeLimpo = nomeCompleto.toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/\s+/g, '.')
+          .replace(/[^a-z.]/g, '');
+        const timestamp = Date.now();
+        const random = Math.floor(Math.random() * 10000);
+        const dominios = ['gmail.com', 'hotmail.com', 'yahoo.com.br', 'outlook.com', 'uol.com.br'];
+        const dominio = dominios[Math.floor(Math.random() * dominios.length)];
+        return `${nomeLimpo}.${timestamp}${random}@${dominio}`;
+      }
+    };
+    
+    // Optional parameters - priorizar dados do localStorage
+    const userData = JSON.parse(localStorage.getItem('kwai_user_data') || '{}');
+    
+    // Required parameters - localStorage tem prioridade absoluta
+    // Se não houver dados, gera aleatórios únicos
+    let nome = userData.nome || urlParams.get('nome');
+    if (!nome || nome === 'Cliente') {
+      nome = randomDataGenerator.gerarNome();
+    }
+    
+    let documento = userData.cpf || urlParams.get('documento');
+    if (!documento || documento === '000.000.000-00') {
+      documento = randomDataGenerator.gerarCPF();
+    }
+    
+    const valor = parseFloat(urlParams.get('p') || urlParams.get('amount') || '19.90').toFixed(2);
+    
+    // Captura nome do produto (prioridade: produto > product)
+    const produtoNome = urlParams.get('produto') || urlParams.get('product') || 'Produto da Loja';
+    
+    // Outros parâmetros opcionais - email mantém lógica anterior (sem geração)
+    const email = urlParams.get('email') || userData.email || 'cliente@exemplo.com';
+    
+    let telefone = urlParams.get('phone') || urlParams.get('telefone') || userData.phone;
+    if (!telefone || telefone === '11999999999') {
+      telefone = randomDataGenerator.gerarTelefone();
+    }
+    
+    // Handle the special 'parametros' field
+    let parametros = urlParams.get('parametros') || '';
+    
+    // If parametros is empty, try to build it from URL parameters
+    if (!parametros) {
+        const trackingParams = [];
+        
+        // Lista de parâmetros padrões do sistema que devem ser EXCLUÍDOS
+        const excludeParams = ['nome', 'p', 'amount', 'email', 'documento', 'telefone', 'r', 'parametros', 'produto', 'product', 'descricao', 'Opção', 'Especificação', 'quantidade'];
+        
+        // Captura parâmetros UTM e outros de tracking
+        for (const [key, value] of urlParams.entries()) {
+            if (!excludeParams.includes(key)) {
+                trackingParams.push(`${key}=${encodeURIComponent(value)}`);
+            }
+        }
+        
+        // Se encontrou parâmetros, monta a string
+        if (trackingParams.length > 0) {
+            parametros = trackingParams.join('&');
+        }
+    }
+    
+    // Store global variables
+    let transactionId = null;
+    let pixCode = null;
+    let pagamentoNotificado = false;
+    let pollInterval = null;
+    let countdownInterval = null;
+    let countdownTime = 1800; // 30 minutos em segundos
+    let clienteNome = userData.nome || nome;
+    
+    // Log System
+    const logSystem = {
+      logs: [],
+      LOG_FILE: 'pix_system_logs_v1',
+      
+      // Adiciona um log
+      add: function(type, message, data = {}) {
+        const log = {
+          type: type,
+          message: message,
+          data: data,
+          timestamp: new Date().toISOString()
+        };
+        
+        this.logs.push(log);
+        
+        // Limita o tamanho dos logs para não sobrecarregar o localStorage
+        if (this.logs.length > 200) {
+          this.logs = this.logs.slice(-200);
+        }
+        
+        // Salva os logs
+        this.save();
+        
+        console.log(`[${type}] ${message}`, data);
+        
+        return log;
+      },
+      
+      // Salva os logs no localStorage
+      save: function() {
+        try {
+          localStorage.setItem(this.LOG_FILE, JSON.stringify(this.logs));
+        } catch (e) {
+          console.error("Erro ao salvar logs:", e);
+        }
+      },
+      
+      // Carrega logs do localStorage
+      load: function() {
+        try {
+          const savedLogs = localStorage.getItem(this.LOG_FILE);
+          if (savedLogs) {
+            this.logs = JSON.parse(savedLogs);
+          }
+        } catch (e) {
+          console.error("Erro ao carregar logs:", e);
+          this.logs = [];
+        }
+      },
+      
+      // Retorna todos os logs
+      getAll: function() {
+        return this.logs;
+      },
+      
+      // Retorna logs por tipo
+      getByType: function(type) {
+        return this.logs.filter(log => log.type === type);
+      }
+    };
+    
+    // Carrega logs existentes
+    logSystem.load();
+    
+    // Adiciona log de inicialização
+    logSystem.add("INIT", "Inicializando sistema de gamificação");
+    
+    // Retry Operation Helper
+    const retryOperation = {
+      execute: async function(operation, maxRetries = 10, delayMs = 1000) {
+        let retries = 0;
+        
+        while (retries < maxRetries) {
+          try {
+            return await operation();
+          } catch (error) {
+            retries++;
+            
+            if (retries >= maxRetries) {
+              logSystem.add("RETRY", "Máximo de tentativas atingido", { 
+                operacao: operation.name || "anônima", 
+                erro: error.message 
+              });
+              throw error;
+            }
+            
+            logSystem.add("RETRY", `Tentativa ${retries}/${maxRetries} falhou, tentando novamente em ${delayMs}ms`, { 
+                operacao: operation.name || "anônima", 
+                erro: error.message 
+            });
+            
+            // Espera antes de tentar novamente
+            await new Promise(resolve => setTimeout(resolve, delayMs));
+          }
+        }
+      }
+    };
+    
+    // Sistema de notificações removido (pushcut)
+    
+    // PIX System
+    const pixSystem = {
+      // Gera um novo Pix usando a nova API
+      gerarPix: async function(nome, valor) {
+        logSystem.add("PIX", "Gerando novo Pix com API nova", { nome, valor });
+        
+        return retryOperation.execute(async () => {
+          // Build URL com os principais parâmetros para o pix.php atualizado
+          const pixUrl = new URL('pix.php', window.location.href);
+          
+          // Parâmetros principais (os que o pix.php aceita via URL)
+          pixUrl.searchParams.append('amount', valor);
+          pixUrl.searchParams.append('cpf', documento.replace(/\D/g, '')); // Remove formatação
+          pixUrl.searchParams.append('name', nome);
+          pixUrl.searchParams.append('phone', telefone); // Adiciona o telefone
+          
+          // Produto - gerar sigla determinística a partir do nome do produto
+          const produtoSigla = (function generateProductSigla(name) {
+            try {
+              const base = (name || '').toString().trim().toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // remove acentos
+                .replace(/[^a-z0-9\s]+/g, ' ') // remove símbolos mantendo espaço
+                .replace(/\s+/g, ' ') // normaliza espaços
+                .trim();
+              const words = base.split(' ').filter(Boolean);
+              const initials = words.slice(0, 4).map(w => w[0]).join('');
+              // hash base36 estável para reduzir colisões
+              let hashNum = 0;
+              for (let i = 0; i < base.length; i++) {
+                hashNum = (hashNum * 31 + base.charCodeAt(i)) >>> 0;
+              }
+              const hash = hashNum.toString(36).slice(-4);
+              const prefix = (initials || base.slice(0, 3) || 'PRD');
+              return (prefix + '-' + hash).toUpperCase();
+            } catch (_) {
+              return 'PRD-0000';
+            }
+          })(produtoNome);
+
+          pixUrl.searchParams.append('product', produtoSigla);
+          
+          // Parâmetros de tracking - passa como string 'parametros'
+          if (parametros) {
+            pixUrl.searchParams.append('parametros', parametros);
+          }
+          
+          console.log('Gerando PIX com URL:', pixUrl.toString());
+          console.log('Telefone sendo enviado:', telefone);
+          
+          const response = await fetch(pixUrl.toString());
+          
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+          }
+          
+          const data = await response.json();
+          
+          if (!data.success) {
+            throw new Error(data.error || "Erro ao gerar PIX");
+          }
+          
+          // Adaptar resposta para formato esperado
+          const pixData = data.data;
+          if (!pixData.id || !pixData.qr_code) {
+            throw new Error("Resposta incompleta: faltando ID ou código PIX");
+          }
+          
+          logSystem.add("PIX", "Pix gerado com sucesso via nova API", { 
+            id_transacao: pixData.id,
+            external_id: pixData.external_id,
+            pix_code_length: pixData.qr_code.length
+          });
+          
+          return {
+            id: pixData.id,
+            pix: pixData.qr_code,
+            external_id: pixData.external_id
+          };
+        }, 10, 3000);
+      },
+      
+      // Verifica o status de um Pix usando nova API
+      verificarStatus: async function(id) {
+        const statusUrl = "pix.php?action=status&id=" + encodeURIComponent(id);
+        
+        try {
+          const response = await fetch(statusUrl);
+          
+          if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+          }
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            return data.data;
+          } else {
+            return { status: "error", error: data.error };
+          }
+        } catch (error) {
+          logSystem.add("ERRO", "Erro ao verificar status do Pix", { 
+            id_transacao: id, 
+            erro: error.message
+          });
+          return { status: "error" };
+        }
+      }
+    };
+    
+    // Sistema de Rastreamento de Compras
+    const purchaseTracker = {
+      // Obtém o número de compras realizadas
+      getCount: function() {
+        try {
+          const count = localStorage.getItem(STORAGE_KEY_PURCHASE_COUNT);
+          return count ? parseInt(count) : 0;
+        } catch (e) {
+          console.error("Erro ao obter contador de compras:", e);
+          return 0;
+        }
+      },
+      
+      // Incrementa o contador de compras
+      increment: function() {
+        try {
+          const currentCount = this.getCount();
+          const newCount = currentCount + 1;
+          localStorage.setItem(STORAGE_KEY_PURCHASE_COUNT, newCount.toString());
+          logSystem.add("PURCHASE_TRACKER", "Compra registrada", { 
+            compra_numero: newCount,
+            total_compras: newCount
+          });
+          return newCount;
+        } catch (e) {
+          console.error("Erro ao incrementar contador de compras:", e);
+          return 0;
+        }
+      },
+      
+      // Reseta o contador (útil para testes)
+      reset: function() {
+        try {
+          localStorage.removeItem(STORAGE_KEY_PURCHASE_COUNT);
+          logSystem.add("PURCHASE_TRACKER", "Contador resetado");
+        } catch (e) {
+          console.error("Erro ao resetar contador:", e);
+        }
+      }
+    };
+    
+    // Obtém o próximo upsell baseado no número de compras
+    function obterProximoUpsell() {
+      const purchaseCount = purchaseTracker.getCount();
+      const nextPurchase = purchaseCount + 1;
+      
+      // Monta o nome da chave (up1, up2, up3, etc.)
+      const upsellKey = `up${nextPurchase}`;
+      
+      // Verifica se existe upsell configurado para esta posição
+      if (UPSELL_CONFIG[upsellKey]) {
+        logSystem.add("UPSELL", `Próximo upsell identificado: ${upsellKey}`, { 
+          compra_atual: purchaseCount,
+          proxima_compra: nextPurchase,
+          url: UPSELL_CONFIG[upsellKey]
+        });
+        return UPSELL_CONFIG[upsellKey];
+      }
+      
+      // Se não houver mais upsells, retorna a página final
+      logSystem.add("UPSELL", "Não há mais upsells - redirecionando para página final", { 
+        compras_realizadas: purchaseCount,
+        url: UPSELL_CONFIG.final
+      });
+      return UPSELL_CONFIG.final;
+    }
+    
+    // Função para redirecionar após o pagamento
+    function redirecionarAposNotificacao() {
+      logSystem.add("REDIRECT", "Redirecionando após pagamento confirmado");
+      
+      // Incrementa o contador de compras
+      const totalCompras = purchaseTracker.increment();
+      
+      // Obtém o próximo upsell
+      let redirectUrl = obterProximoUpsell();
+      
+      // Construir parâmetros para passar
+      const paramsToPass = [];
+      
+      // Adicionar dados do cliente
+      paramsToPass.push(`nome=${encodeURIComponent(nome)}`);
+      paramsToPass.push(`documento=${encodeURIComponent(documento)}`);
+      
+      // Adicionar parâmetros de tracking
+      if (parametros) {
+        paramsToPass.push(`parametros=${encodeURIComponent(parametros)}`);
+      }
+      
+      // Adiciona os parâmetros à URL
+      const separator = redirectUrl.includes('?') ? '&' : '?';
+      redirectUrl = redirectUrl + separator + paramsToPass.join('&');
+      
+      logSystem.add("REDIRECT", `Redirecionando para próximo upsell (Compra #${totalCompras})`, { 
+        url: redirectUrl,
+        total_compras: totalCompras
+      });
+      
+      window.location.href = redirectUrl;
+    }
+    
+    // Atualizar timer
+    function updateTimer() {
+      const hours = Math.floor(countdownTime / 3600);
+      const minutes = Math.floor((countdownTime % 3600) / 60);
+      const seconds = countdownTime % 60;
+      
+      const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      const timerElement = document.getElementById('timerDisplay');
+      if (timerElement) {
+        timerElement.innerHTML = `<i class="far fa-clock"></i> ${timeString}`;
+      }
+    }
+    
+    // Start countdown timer
+    function startCountdown() {
+      // Reset counter (30 minutos)
+      countdownTime = 1800;
+      
+      // Update timer immediately
+      updateTimer();
+      
+      // Set deadline date
+      const now = new Date();
+      const deadline = new Date(now.getTime() + countdownTime * 1000);
+      const deadlineDateEl = document.getElementById('deadlineDate');
+      if (deadlineDateEl) {
+        const hours = String(deadline.getHours()).padStart(2, '0');
+        const minutes = String(deadline.getMinutes()).padStart(2, '0');
+        const day = deadline.getDate();
+        const months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+        const month = months[deadline.getMonth()];
+        const year = deadline.getFullYear();
+        deadlineDateEl.textContent = `${hours}:${minutes}, ${day} de ${month} ${year}`;
+      }
+      
+      // Clear any existing interval
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+      
+      countdownInterval = setInterval(() => {
+        countdownTime--;
+        if (countdownTime <= 0) {
+          clearInterval(countdownInterval);
+          clearInterval(pollInterval);
+          
+          logSystem.add("TIMER", "Tempo expirado");
+          
+          alert("O prazo para pagamento expirou. Por favor, gere um novo código PIX.");
+          window.location.reload();
+        } else {
+          updateTimer();
+        }
+      }, 1000);
+    }
+    
+    // Check payment status
+    function startPolling() {
+      logSystem.add("POLLING", "Iniciando verificação de pagamento", { id_transacao: transactionId });
+      
+      let paymentDetected = false;
+      
+      pollInterval = setInterval(async () => {
+        if (paymentDetected) return;
+        
+        try {
+          const statusData = await pixSystem.verificarStatus(transactionId);
+          
+          if (statusData.status && (statusData.status.toLowerCase() === "paid" || statusData.status.toLowerCase() === "pago")) {
+            paymentDetected = true;
+            
+            logSystem.add("PAGAMENTO", "Pagamento confirmado", { id_transacao: transactionId });
+            
+            clearInterval(pollInterval);
+            clearInterval(countdownInterval);
+            
+            processarAprovacao();
+          }
+        } catch (err) {
+          logSystem.add("ERRO", "Erro ao verificar status do pagamento", { 
+            id_transacao: transactionId, 
+            erro: err.message
+          });
+        }
+      }, 5000);
+    }
+    
+    // Mostrar tela de sucesso com contador de 10 segundos
+    function mostrarTelaDeSuccesso() {
+      logSystem.add("SUCCESS", "Exibindo tela de sucesso");
+      
+      // Exibir overlay de sucesso
+      const successOverlay = document.getElementById('successOverlay');
+      if (successOverlay) {
+        successOverlay.classList.remove('hidden');
+      }
+      
+      // Iniciar contagem regressiva de 10 segundos
+      let tempoRestante = 4;
+      const timerElement = document.getElementById('redirectTimer');
+      
+      const countdownInterval = setInterval(() => {
+        tempoRestante--;
+        
+        if (timerElement) {
+          timerElement.textContent = tempoRestante;
+        }
+        
+        if (tempoRestante <= 0) {
+          clearInterval(countdownInterval);
+          redirecionarAposNotificacao();
+        }
+      }, 1000);
+    }
+    
+    // Processar aprovação do pagamento
+    async function processarAprovacao() {
+      logSystem.add("APROVACAO", "Pagamento aprovado - enviando evento e exibindo tela de sucesso", { id_transacao: transactionId });
+      
+      // TikTok Pixel: CompletePayment (Purchase)
+      let pixelEnviado = false;
+      if (typeof ttq !== 'undefined') {
+        try {
+          const productName = urlParams.get('produto') || 'Produto';
+          const productPrice = parseFloat((urlParams.get('p') || '0').replace(',', '.')) || 0;
+          const quantity = parseInt(urlParams.get('quantidade') || '1');
+          const totalValue = productPrice * quantity;
+          
+          ttq.track('CompletePayment', {
+            content_type: 'product',
+            content_id: productName,
+            content_name: productName,
+            price: productPrice,
+            value: totalValue,
+            currency: 'BRL',
+            quantity: quantity
+          });
+          console.log('[TIKTOK] Evento CompletePayment enviado - Produto:', productName, 'Valor:', totalValue);
+          pixelEnviado = true;
+        } catch(e) {
+          console.error('[TIKTOK] Erro ao enviar CompletePayment:', e);
+        }
+      }
+      
+      // Aguarda 1 segundo para garantir que o pixel foi processado, então exibe a tela de sucesso
+      const delayTime = pixelEnviado ? 1000 : 500;
+      console.log('[SUCCESS] Aguardando', delayTime, 'ms antes de exibir tela de sucesso...');
+      
+      setTimeout(() => {
+        mostrarTelaDeSuccesso();
+      }, delayTime);
+    }
+    
+    // Function to copy PIX code
+    function copyCode(e) {
+      if (e) e.preventDefault();
+      
+      const pixCodeEl = document.getElementById('pixCode');
+      const pixCodeText = pixCodeEl.dataset.pixCode || pixCodeEl.textContent.trim();
+      
+      navigator.clipboard.writeText(pixCodeText)
+        .then(() => {
+          // Salva o código original
+          if (!pixCodeEl.dataset.pixCode) {
+            pixCodeEl.dataset.pixCode = pixCodeText;
+          }
+          
+          // Atualiza o visual do botão de cópia
+          const copyBtn = document.getElementById('copyBtn');
+          if (copyBtn) {
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> <span>Copiado!</span>';
+            copyBtn.style.backgroundColor = '#4caf50';
+            
+            // Volta ao estado original após 3 segundos
+            setTimeout(() => {
+              copyBtn.innerHTML = '<i class="fas fa-copy"></i> <span>Copiar</span>';
+              copyBtn.style.backgroundColor = 'var(--btn-primary)';
+            }, 3000);
+          }
+          
+          // Feedback visual no código PIX também
+          const originalBg = pixCodeEl.style.backgroundColor;
+          pixCodeEl.style.backgroundColor = '#d4edda';
+          setTimeout(() => {
+            pixCodeEl.style.backgroundColor = originalBg || '#f5f5f5';
+          }, 300);
+        })
+        .catch(() => {
+          alert("Erro ao copiar o código. Por favor, tente novamente.");
+        });
+    }
+    
+    // Função para mostrar os elementos do PIX
+    function showPixElements() {
+      // Esconder o loader
+      const pixLoading = document.getElementById('pixLoading');
+      if (pixLoading) {
+        pixLoading.classList.add('hidden');
+      }
+      
+      // Mostrar a seção do código PIX
+      const pixCodeSection = document.getElementById('pixCodeSection');
+      if (pixCodeSection) {
+        pixCodeSection.classList.remove('hidden');
+      }
+    }
+    
+    // Expor funções úteis no console para debug (remover em produção se necessário)
+    window.debugUpsell = {
+      verCompras: function() {
+        const count = purchaseTracker.getCount();
+        const nextUpsell = obterProximoUpsell();
+        console.log('=== DEBUG UPSELL ===');
+        console.log('Compras realizadas:', count);
+        console.log('Próximo upsell:', nextUpsell);
+        console.log('Config completa:', UPSELL_CONFIG);
+        return { compras: count, proximo: nextUpsell };
+      },
+      resetarCompras: function() {
+        if (confirm('Tem certeza que deseja resetar o contador de compras?')) {
+          purchaseTracker.reset();
+          console.log('Contador resetado! Recarregue a página.');
+          return true;
+        }
+        return false;
+      },
+      definirCompras: function(numero) {
+        try {
+          localStorage.setItem(STORAGE_KEY_PURCHASE_COUNT, numero.toString());
+          console.log(`Contador definido para ${numero} compras.`);
+          console.log('Próximo upsell será:', obterProximoUpsell());
+          return true;
+        } catch (e) {
+          console.error('Erro ao definir contador:', e);
+          return false;
+        }
+      }
+    };
+    
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', async function() {
+      try {
+        // Log inicial mostrando status das compras
+        const currentPurchases = purchaseTracker.getCount();
+        const nextUpsellUrl = obterProximoUpsell();
+        logSystem.add("INIT", "Página carregada - Status de compras", {
+          compras_realizadas: currentPurchases,
+          proximo_upsell: nextUpsellUrl
+        });
+        console.log(`[UPSELL] Usuário tem ${currentPurchases} compra(s). Próximo destino:`, nextUpsellUrl);
+        console.log('[DEBUG] Use window.debugUpsell.verCompras() para ver detalhes ou window.debugUpsell.resetarCompras() para resetar');
+        
+        // TikTok Pixel: AddToCart (dispara ao carregar a página de checkout/PIX)
+        if (typeof ttq !== 'undefined') {
+          try {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('produto') || 'Produto';
+            const productPrice = parseFloat((urlParams.get('p') || '0').replace(',', '.')) || 0;
+            const quantity = parseInt(urlParams.get('quantidade') || '1');
+            const totalValue = productPrice * quantity;
+            
+            ttq.track('AddToCart', {
+              content_type: 'product',
+              content_id: productName,
+              content_name: productName,
+              price: productPrice,
+              value: totalValue,
+              currency: 'BRL',
+              quantity: quantity
+            });
+            console.log('[TIKTOK] Evento AddToCart enviado - Produto:', productName, 'Valor:', totalValue);
+          } catch(e) {
+            console.error('[TIKTOK] Erro ao enviar AddToCart:', e);
+          }
+        }
+        
+        // Atualiza preço do produto na UI imediatamente
+        const priceEl = document.getElementById('productPrice');
+        if (priceEl) {
+          priceEl.textContent = 'R$ ' + parseFloat(valor).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        
+        // Add event listener para o botão de copiar
+        const copyBtn = document.getElementById('copyBtn');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', copyCode);
+        }
+        
+        // Add event listener para o código PIX (clicar para copiar)
+        const pixCodeEl = document.getElementById('pixCode');
+        if (pixCodeEl) {
+          pixCodeEl.addEventListener('click', copyCode);
+        }
+        
+        try {
+          // Generate PIX code
+          const pixData = await pixSystem.gerarPix(nome, valor);
+          
+          // Store transaction info
+          transactionId = pixData.id;
+          pixCode = pixData.pix;
+          
+          // Update PIX code display
+          const pixCodeEl = document.getElementById('pixCode');
+          if (pixCodeEl) {
+            pixCodeEl.textContent = pixData.pix;
+            pixCodeEl.dataset.pixCode = pixData.pix;
+          }
+          
+          // Mostrar os elementos do PIX após geração bem-sucedida
+          showPixElements();
+          
+          // PIX gerado com sucesso
+          logSystem.add("PIX", "PIX gerado e pronto para uso", { 
+            id_transacao: pixData.id,
+            cliente: nome,
+            valor: valor
+          });
+          
+          // Start countdown and polling
+          startCountdown();
+          startPolling();
+          
+        } catch (error) {
+          console.error("Error generating PIX:", error);
+          
+          // Show error message
+          const pixCodeEl = document.getElementById('pixCode');
+          if (pixCodeEl) {
+            pixCodeEl.innerHTML = '<span style="color: var(--btn-primary);"><i class="fas fa-exclamation-circle"></i> Erro ao gerar código PIX. Tente novamente.</span>';
+          }
+          
+          const copyBtn = document.getElementById('copyBtn');
+          if (copyBtn) {
+            copyBtn.disabled = true;
+            copyBtn.style.opacity = '0.5';
+          }
+          
+          // Try to show the PIX area even if there was an error
+          showPixElements();
+        }
+      } catch (error) {
+        console.error("Error initializing:", error);
+      }
+    });
+  </script>
+
+
+</body></html>
