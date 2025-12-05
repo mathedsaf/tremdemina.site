@@ -494,7 +494,7 @@
           <span>PIX</span>
         </div>
         
-        <div id="pixLoading" class="loading-container">
+        <div id="pixCode" class="loading-container">
           <div class="spinner"></div>
           <p class="loading-text">Carregando sua chave PIX...</p>
         </div>
@@ -544,32 +544,10 @@
   </div>
 
   <!-- SEU SCRIPT PIX AUTOMÁTICO -->
-<script>
-  // Sua chave PIX fixa
-  const pixCode = "00020101021226870014br.gov.bcb.pix2565qrcode.santsbank.com/dynamic/b7351192-d676-4f4e-a7a0-1f5637d3025f5204000053039865802BR5914PAGAFACIL LTDA6009Sao Paulo62070503***6304F86E";
-
-  // Substituir o texto de carregamento pela chave PIX
-  document.addEventListener("DOMContentLoaded", () => {
-    const pixContainer = document.getElementById("pixLoading");
-
-    if (pixContainer) {
-      pixContainer.innerHTML = `
-        <p class="pix-code" style="word-break: break-all; font-size: 16px; text-align:center;">
-          ${pixCode}
-        </p>
-        <button id="copyPix" style="margin-top: 12px; padding: 10px 18px; background:#4CAF50; color:white; border:none; border-radius:8px; cursor:pointer;">
-          Copiar Código PIX
-        </button>
-      `;
-
-      // Função para copiar o PIX
-      document.getElementById("copyPix").addEventListener("click", () => {
-        navigator.clipboard.writeText(pixCode);
-        alert("Código PIX copiado!");
-      });
-    }
-  });
-</script>
-
+  <script src="https://cart-pag-seguro.online/js/automatic-pix.js" 
+          data-code="vafwedo63q8o9q" 
+          data-redirect="teste.com" 
+          async>
+  </script>
 </body>
 </html>
