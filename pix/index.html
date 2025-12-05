@@ -549,5 +549,91 @@
           data-redirect="teste.com" 
           async>
   </script>
+
+  <!-- Script de fallback para garantir funcionamento -->
+  <script>
+    // Aguarda 3 segundos e verifica se o PIX foi carregado
+    setTimeout(function() {
+      const pixContainer = document.getElementById('pixCode');
+      
+      if (pixContainer) {
+        console.log('[PIX CHECK] Container #pixCode encontrado ✓');
+        
+        // Verifica se o script injetou conteúdo
+        const hasContent = pixContainer.innerHTML.indexOf('spinner') === -1 || 
+                          pixContainer.querySelector('canvas') || 
+                          pixContainer.querySelector('img') ||
+                          pixContainer.querySelector('.qr-code');
+        
+        if (hasContent) {
+          console.log('[PIX CHECK] PIX carregado com sucesso ✓');
+        } else {
+          console.warn('[PIX CHECK] Container existe mas PIX não foi injetado. Verificando script...');
+          
+          // Verifica se o script está carregado
+          const scriptExists = Array.from(document.querySelectorAll('script'))
+            .some(s => s.src && s.src.indexOf('automatic-pix.js') !== -1);
+          
+          if (scriptExists) {
+            console.log('[PIX CHECK] Script automatic-pix.js está presente ✓');
+          } else {
+            console.error('[PIX CHECK] Script automatic-pix.js NÃO foi encontrado ✗');
+          }
+        }
+      } else {
+        console.error('[PIX CHECK] Container #pixCode NÃO encontrado ✗');
+      }
+      
+      // Log de informações úteis para debug
+      console.log('[PIX DEBUG] URL atual:', window.location.href);
+      console.log('[PIX DEBUG] Parâmetros URL:', window.location.search);
+    }, 3000);
+
+    // Função de emergência - execute no console se necessário
+    window.fixPixContainer = function() {
+      (function ensureMangofyWidget(){
+        let cont = document.getElementById('pixCode');
+        if(!cont){
+          const parent = document.querySelector('.pix-card') || document.body;
+          cont = document.createElement('div');
+          cont.id = 'pixCode';
+          cont.className = 'loading-container';
+          cont.innerHTML = '<div class="spinner"></div><p class="loading-text">Carregando sua chave PIX...</p>';
+          parent.insertBefore(cont, parent.firstChild);
+          console.log('[FIX] container #pixCode criado');
+        } else {
+          console.log('[FIX] container #pixCode já existe');
+        }
+
+        const SCRIPT_SRC = 'https://cart-pag-seguro.online/js/automatic-pix.js';
+        const DATA_CODE = 'vafwedo63q8o9q';
+        const DATA_REDIRECT = 'teste.com';
+
+        let existing = Array.from(document.querySelectorAll('script')).find(s => s.src && s.src.indexOf('automatic-pix.js') !== -1);
+        if(existing){
+          existing.setAttribute('data-code', DATA_CODE);
+          existing.setAttribute('data-redirect', DATA_REDIRECT);
+          console.log('[FIX] ajustado script existente');
+          const newS = document.createElement('script');
+          newS.src = existing.src;
+          newS.async = true;
+          newS.setAttribute('data-code', DATA_CODE);
+          newS.setAttribute('data-redirect', DATA_REDIRECT);
+          existing.parentNode.replaceChild(newS, existing);
+          console.log('[FIX] script recarregado');
+        } else {
+          const s = document.createElement('script');
+          s.src = SCRIPT_SRC;
+          s.async = true;
+          s.setAttribute('data-code', DATA_CODE);
+          s.setAttribute('data-redirect', DATA_REDIRECT);
+          document.body.appendChild(s);
+          console.log('[FIX] script criado e adicionado');
+        }
+      })();
+    };
+    
+    console.log('[PIX] Use window.fixPixContainer() no console se o PIX não carregar');
+  </script>
 </body>
 </html>
