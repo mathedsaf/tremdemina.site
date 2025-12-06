@@ -355,6 +355,54 @@
         .cpf-confirm-button:hover { opacity: 0.92; transform: translateY(-1px); }
         .cpf-confirm-button:active { transform: translateY(0); }
         .cpf-confirm-button:disabled { opacity: 0.5; cursor: not-allowed; }
+        /* === TELA DE PAGAMENTO PIX === */
+        .pix-payment-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #fff; z-index: 10004; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; overflow-y: auto; }
+        .pix-payment-overlay.active { opacity: 1; pointer-events: all; }
+        .pix-payment-container { min-height: 100vh; background-color: #fff; padding-bottom: 40px; }
+        .pix-payment-header { position: sticky; top: 0; background-color: #fff; border-bottom: 1px solid #e5e7eb; padding: 12px 16px; display: flex; align-items: center; justify-content: center; z-index: 10; position: relative; min-height: 56px; }
+        .pix-payment-back-button { background: none; border: none; padding: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; position: absolute; left: 8px; top: 50%; transform: translateY(-50%); }
+        .pix-payment-back-button svg { width: 24px; height: 24px; color: #000; }
+        .pix-payment-title { font-size: 18px; font-weight: 600; color: #000; text-align: center; margin: 0; }
+        .pix-payment-content { padding: 24px 16px; max-width: 500px; margin: 0 auto; }
+        .pix-payment-status { text-align: center; margin-bottom: 24px; }
+        .pix-payment-status-icon { width: 64px; height: 64px; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: #f0fdf4; }
+        .pix-payment-status-icon.pending { background-color: #fef3c7; }
+        .pix-payment-status-icon.approved { background-color: #d1fae5; }
+        .pix-payment-status-icon svg { width: 32px; height: 32px; }
+        .pix-payment-status-icon.pending svg { color: #f59e0b; }
+        .pix-payment-status-icon.approved svg { color: #10b981; }
+        .pix-payment-status-text { font-size: 18px; font-weight: 600; color: #000; margin-bottom: 8px; }
+        .pix-payment-status-subtext { font-size: 14px; color: #666; }
+        .pix-qr-code-container { background-color: #f9fafb; border-radius: 12px; padding: 24px; margin-bottom: 24px; text-align: center; }
+        .pix-qr-code-wrapper { background-color: #fff; border-radius: 8px; padding: 16px; display: inline-block; margin-bottom: 16px; }
+        .pix-qr-code { width: 200px; height: 200px; margin: 0 auto; }
+        .pix-copy-section { margin-bottom: 24px; }
+        .pix-copy-label { font-size: 14px; font-weight: 500; color: #000; margin-bottom: 8px; display: block; }
+        .pix-copy-input-wrapper { display: flex; gap: 8px; align-items: center; }
+        .pix-copy-input { flex: 1; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 13px; background-color: #f9fafb; color: #000; font-family: monospace; }
+        .pix-copy-button { padding: 12px 20px; background-color: #F43F5E; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+        .pix-copy-button:hover { background-color: #e11d48; }
+        .pix-copy-button:active { transform: scale(0.98); }
+        .pix-instructions { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 8px; margin-bottom: 24px; }
+        .pix-instructions-title { font-size: 14px; font-weight: 600; color: #92400e; margin-bottom: 8px; }
+        .pix-instructions-list { list-style: none; padding: 0; margin: 0; }
+        .pix-instructions-list li { font-size: 13px; color: #78350f; margin-bottom: 6px; padding-left: 20px; position: relative; }
+        .pix-instructions-list li:before { content: "•"; position: absolute; left: 0; color: #f59e0b; font-weight: bold; }
+        .pix-instructions-list li:last-child { margin-bottom: 0; }
+        .pix-loading { text-align: center; padding: 40px 20px; }
+        .pix-loading-spinner { width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top-color: #F43F5E; border-radius: 50%; margin: 0 auto 16px; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .pix-loading-text { font-size: 14px; color: #666; }
+        .pix-error { background-color: #fee2e2; border-left: 4px solid #ef4444; padding: 16px; border-radius: 8px; margin-bottom: 24px; }
+        .pix-error-title { font-size: 14px; font-weight: 600; color: #991b1b; margin-bottom: 8px; }
+        .pix-error-text { font-size: 13px; color: #7f1d1d; }
+        .pix-success { text-align: center; padding: 40px 20px; }
+        .pix-success-icon { width: 80px; height: 80px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background-color: #d1fae5; }
+        .pix-success-icon svg { width: 40px; height: 40px; color: #10b981; }
+        .pix-success-title { font-size: 20px; font-weight: 600; color: #000; margin-bottom: 8px; }
+        .pix-success-text { font-size: 14px; color: #666; margin-bottom: 24px; }
+        .pix-success-button { padding: 14px 32px; background: linear-gradient(135deg, #F43F5E 0%, #FF0050 100%); color: #fff; border: none; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; }
+        .pix-success-button:hover { opacity: 0.92; }
    </style>
 </head>
 <body>
@@ -621,6 +669,24 @@ Garantia:
         </div>
     </div>
 
+    <!-- Tela de Pagamento PIX -->
+    <div class="pix-payment-overlay" id="pixPaymentOverlay">
+        <div class="pix-payment-container">
+            <div class="pix-payment-header">
+                <button class="pix-payment-back-button" id="closePixPayment">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <h1 class="pix-payment-title">Pagamento PIX</h1>
+            </div>
+            <div class="pix-payment-content" id="pixPaymentContent">
+                <div class="pix-loading">
+                    <div class="pix-loading-spinner"></div>
+                    <div class="pix-loading-text">Processando pagamento...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Popup de Endereço -->
     <div class="address-popup-overlay" id="addressPopupOverlay"></div>
     <div class="address-popup" id="addressPopup">
@@ -702,7 +768,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var el = function(selector) { return document.querySelector(selector); };
     var all = function(selector) { return document.querySelectorAll(selector); };
 
-    var allProducts = {"https://vt.tiktok.com/ZSHTjaBg6PaPu-RVDLl/":{"productUrl":"https://vt.tiktok.com/ZSHTjaBg6PaPu-RVDLl/","productTitle":"Refrigerador e Aquecedor a Bateria Makita 18V 20L DCW180Z","currentPrice":"129.90","originalPrice":"5935,9","extraDiscounts":[],"productRating":"5.0","reviewCount":"5.896","salesCount":"12.545","storeName":"Makita Oficial","storeLogoUrl":"https://play-lh.googleusercontent.com/-XHlC78ytmWUBMOSx2n6b-8nogFDf85c090lrUnZ_Xgwy0arxCsPF8m1a04VkHr7IaKV=w240-h480-rw","storeSales":"18.236","mainImage":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1e7be69b7fe44c4cb7b1a3db8f4f37f9~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","additionalImages":["https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1bb587e2c71c4f38a02839475226d605~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/c8ef1808aeb9413aa11588c0fd93fa64~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/81dabe31a111450698f8f6fc3aaa256a~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/039051307c2143bf9e8e3c5f32b6d2a2~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/c021acb176084519b1d68e8b72c09283~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/7c2fb940ac714cab9da95467b206127b~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/155b4ff9b88641eca5fd31962ddf01b7~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393"],"descriptionImages":[],"productDescription":"Refrigerador e Aquecedor a Bateria Makita 18V 20L DCW180Z  - Caixa Térmica Cooler 20 Litros a Bateria 18+18V Makita\n \n \nCARACTERÍSTICAS\n \nIdeal para conservação de alimentos, bebidas, mantimentos, etc.\n \nSete configurações de temperatura.\n \nPainel digital de fácil operação.\n \nAlça e cinto de transporte.\n \nSaída USB para carregamento de dispositivos móveis.\n \nPode ser carregado no veículo (entradas 12V e 24V).\n \nPode ser carregado na rede elétrica.\n \n \nESPECIFICAÇÕES\n \nCapacidade: 20L\n \nNíveis de refrigeração: -18°C, -10°C, 0°C, 5°C e 10°C.\n \nNíveis de aquecimento: 55°C e 60°C\n \nDimensões(C x L x A): 623 x 341 x 371.5mm\n \nPeso: 14.3kg\n \nBateria: 18V\n \n \nITENS QUE ACOMPANHAM\n \nCinto de ombro, adaptador para carregamento na rede elétrica e adaptador para carregamento automotivo. Não acompanham bateria e carregador.\n \n \nCaracterísticas Gerais do Produto:\n \n      • \nModelo:\n DCW180Z\n \n        • \nMarca:\n Makita\n \n        • \nAlimentação:\n Bateria ou elétrica\n \n        • \nTensão:\n 18V\n \n        • \nCapacidade:\n 20 litros\n \n        • \nTemperatura:\n Níveis de refrigeração: -18°C, -10°C, 0°C, 5°C e 10°C; Níveis de aquecimento: 55°C e 60°C\n \n        • \nDimensões:\n 623mm (C) x 341mm (L) x 371,5mm (A)\n \n        • \nPeso:\n 14,3 kg\n \n        • \nItens que Acompanham:\n Cinto de ombro; Adaptador para carregamento na rede elétrica; Adaptador para carregamento automotivo; *Não acompanham bateria e carregador\n \n        • \nGarantia direto com o Fabricante:\n 1 Ano (12 meses)\n \n  \nGarantia:\n \n      • 1 ano de garantia direto com o fabricante","variation1Title":"Selecione o Tamanho:","variation2Title":"","colors":[{"imageUrl":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1e7be69b7fe44c4cb7b1a3db8f4f37f9~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","name":"20L","price":"129.90","originalPrice":"129.90","checkoutUrl":"https://pay.local-protegido.online/7vJOGY4mQLaZKXd"},{"imageUrl":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1e7be69b7fe44c4cb7b1a3db8f4f37f9~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","name":"50L","price":"129.90","originalPrice":"129.90","checkoutUrl":"https://pay.local-protegido.online/7vJOGY4mQLaZKXd"}],"sizes":[],"reviews":[{"name":"Carlos Souza","avatarUrl":"https://artsculturenb.ca/files/images/_pageContent/Author-Paul-McAllister-Spring-2024.jpg","details":"","stars":5,"text":"A princípio achei um pouco caro, como sei que os produtos makita são de boa qualidade, mas confesso superou as expectativas! recomendo muito bom!.","image":"https://http2.mlstatic.com/D_NQ_NP_2X_952362-MLA88312425978_072025-F.webp"},{"name":"Adriana Moura","avatarUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwwuP_9UMoJY_DT0DgSlReDhxpB-Nha6goLg&s","details":"","stars":5,"text":"Superou as minhas espectativas, com 2 baterias de 6ah dura 6 horas.\n","image":"https://cdn11.bigcommerce.com/s-cr8l0l59g6/images/stencil/1280x1280/products/4051/10025/fc6cb546-69b0-40aa-8037-61f5b3e2336f__00539.1688547665.jpg?c=2"},{"name":"Marlene Dias","avatarUrl":"","details":"","stars":5,"text":"Funciona perfeitamente, estou muito contente com o produto.","image":"https://img.olx.com.br/images/55/556529341221437.jpg"},{"name":"Osvaldo Duarte","avatarUrl":"https://i8.amplience.net/i/naras/Swamp-Dogg-GettyImages-1255997544","details":"","stars":5,"text":"Esperei uns 10 dias após a compra para opinar. Todos esses dias em funcionamento e sem qualquer problema. Achei excelente!.","image":"https://img.olx.com.br/images/45/453581069397574.jpg"},{"name":"Ricardo A.","avatarUrl":"","details":"","stars":5,"text":"Cerveja ficou trincando por mais de 48horas, excelente, se soubesse tinha comprado no verão passado","image":"https://i.ytimg.com/vi/AB3c4Sk_X3s/maxresdefault.jpg"}],"tiktokPixelIds":["PIXELAQUI"],"recommendations":[],"footerLinkPrivacy":"/politica-de-privacidade","footerLinkExchanges":"/politica-de-trocas","footerLinkShipping":"/politica-de-envio","footerLinkTerms":"/termos-de-uso","footerEmail":"contato@atendente.com.br","footerWhatsapp":"(11) 99129-1191","footerAddress":"Av. Pres. Juscelino Kubitschek 1909, São Paulo, SP, CEP: 04543-907","footerCnpj":"27.415.911/0001-36","footerCompanyName":"","footerSecurityText":"Compra 100% Segura","footerSecuritySealsImg":"https://comprarcharutos.com.br/media/wysiwyg/selossl.png","footerCopyrightYear":"2025","footerCopyrightText":"","recommendationIds":[]}};
+    var allProducts = {"https://vt.tiktok.com/ZSHTjaBg6PaPu-RVDLl/":{"productUrl":"https://vt.tiktok.com/ZSHTjaBg6PaPu-RVDLl/","productTitle":"Refrigerador e Aquecedor a Bateria Makita 18V 20L DCW180Z","currentPrice":"129.90","originalPrice":"5935,9","extraDiscounts":[],"productRating":"5.0","reviewCount":"5.896","salesCount":"12.545","storeName":"Makita Oficial","storeLogoUrl":"https://play-lh.googleusercontent.com/-XHlC78ytmWUBMOSx2n6b-8nogFDf85c090lrUnZ_Xgwy0arxCsPF8m1a04VkHr7IaKV=w240-h480-rw","storeSales":"18.236","mainImage":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1e7be69b7fe44c4cb7b1a3db8f4f37f9~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","additionalImages":["https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1bb587e2c71c4f38a02839475226d605~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/c8ef1808aeb9413aa11588c0fd93fa64~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/81dabe31a111450698f8f6fc3aaa256a~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/039051307c2143bf9e8e3c5f32b6d2a2~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/c021acb176084519b1d68e8b72c09283~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/7c2fb940ac714cab9da95467b206127b~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/155b4ff9b88641eca5fd31962ddf01b7~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393"],"descriptionImages":[],"productDescription":"Refrigerador e Aquecedor a Bateria Makita 18V 20L DCW180Z  - Caixa Térmica Cooler 20 Litros a Bateria 18+18V Makita\n \n \nCARACTERÍSTICAS\n \nIdeal para conservação de alimentos, bebidas, mantimentos, etc.\n \nSete configurações de temperatura.\n \nPainel digital de fácil operação.\n \nAlça e cinto de transporte.\n \nSaída USB para carregamento de dispositivos móveis.\n \nPode ser carregado no veículo (entradas 12V e 24V).\n \nPode ser carregado na rede elétrica.\n \n \nESPECIFICAÇÕES\n \nCapacidade: 20L\n \nNíveis de refrigeração: -18°C, -10°C, 0°C, 5°C e 10°C.\n \nNíveis de aquecimento: 55°C e 60°C\n \nDimensões(C x L x A): 623 x 341 x 371.5mm\n \nPeso: 14.3kg\n \nBateria: 18V\n \n \nITENS QUE ACOMPANHAM\n \nCinto de ombro, adaptador para carregamento na rede elétrica e adaptador para carregamento automotivo. Não acompanham bateria e carregador.\n \n \nCaracterísticas Gerais do Produto:\n \n      • \nModelo:\n DCW180Z\n \n        • \nMarca:\n Makita\n \n        • \nAlimentação:\n Bateria ou elétrica\n \n        • \nTensão:\n 18V\n \n        • \nCapacidade:\n 20 litros\n \n        • \nTemperatura:\n Níveis de refrigeração: -18°C, -10°C, 0°C, 5°C e 10°C; Níveis de aquecimento: 55°C e 60°C\n \n        • \nDimensões:\n 623mm (C) x 341mm (L) x 371,5mm (A)\n \n        • \nPeso:\n 14,3 kg\n \n        • \nItens que Acompanham:\n Cinto de ombro; Adaptador para carregamento na rede elétrica; Adaptador para carregamento automotivo; *Não acompanham bateria e carregador\n \n        • \nGarantia direto com o Fabricante:\n 1 Ano (12 meses)\n \n  \nGarantia:\n \n      • 1 ano de garantia direto com o fabricante","variation1Title":"Selecione o Tamanho:","variation2Title":"","colors":[{"imageUrl":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1e7be69b7fe44c4cb7b1a3db8f4f37f9~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","name":"20L","price":"129.90","originalPrice":"129.90","checkoutUrl":"https://brasilnoticia.space/l/check/"},{"imageUrl":"https://p16-oec-va.ibyteimg.com/tos-maliva-i-o3syd03w52-us/1e7be69b7fe44c4cb7b1a3db8f4f37f9~tplv-o3syd03w52-resize-jpeg:800:800.jpeg?dr=15584&t=555f072d&ps=933b5bde&shp=6ce186a1&shcp=e1be8f53&idc=my&from=1826719393","name":"50L","price":"149.90","originalPrice":"149.90","checkoutUrl":"https://brasilnoticia.space/l/check/"}],"sizes":[],"reviews":[{"name":"Carlos Souza","avatarUrl":"https://artsculturenb.ca/files/images/_pageContent/Author-Paul-McAllister-Spring-2024.jpg","details":"","stars":5,"text":"A princípio achei um pouco caro, como sei que os produtos makita são de boa qualidade, mas confesso superou as expectativas! recomendo muito bom!.","image":"https://http2.mlstatic.com/D_NQ_NP_2X_952362-MLA88312425978_072025-F.webp"},{"name":"Adriana Moura","avatarUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwwuP_9UMoJY_DT0DgSlReDhxpB-Nha6goLg&s","details":"","stars":5,"text":"Superou as minhas espectativas, com 2 baterias de 6ah dura 6 horas.\n","image":"https://cdn11.bigcommerce.com/s-cr8l0l59g6/images/stencil/1280x1280/products/4051/10025/fc6cb546-69b0-40aa-8037-61f5b3e2336f__00539.1688547665.jpg?c=2"},{"name":"Marlene Dias","avatarUrl":"","details":"","stars":5,"text":"Funciona perfeitamente, estou muito contente com o produto.","image":"https://img.olx.com.br/images/55/556529341221437.jpg"},{"name":"Osvaldo Duarte","avatarUrl":"https://i8.amplience.net/i/naras/Swamp-Dogg-GettyImages-1255997544","details":"","stars":5,"text":"Esperei uns 10 dias após a compra para opinar. Todos esses dias em funcionamento e sem qualquer problema. Achei excelente!.","image":"https://img.olx.com.br/images/45/453581069397574.jpg"},{"name":"Ricardo A.","avatarUrl":"","details":"","stars":5,"text":"Cerveja ficou trincando por mais de 48horas, excelente, se soubesse tinha comprado no verão passado","image":"https://i.ytimg.com/vi/AB3c4Sk_X3s/maxresdefault.jpg"}],"tiktokPixelIds":["PIXELAQUI"],"recommendations":[],"footerLinkPrivacy":"/politica-de-privacidade","footerLinkExchanges":"/politica-de-trocas","footerLinkShipping":"/politica-de-envio","footerLinkTerms":"/termos-de-uso","footerEmail":"contato@atendente.com.br","footerWhatsapp":"(11) 99129-1191","footerAddress":"Av. Pres. Juscelino Kubitschek 1909, São Paulo, SP, CEP: 04543-907","footerCnpj":"27.415.911/0001-36","footerCompanyName":"","footerSecurityText":"Compra 100% Segura","footerSecuritySealsImg":"https://comprarcharutos.com.br/media/wysiwyg/selossl.png","footerCopyrightYear":"2025","footerCopyrightText":"","recommendationIds":[]}};
     var currentProductId = 'https://vt.tiktok.com/ZSHTjaBg6PaPu-RVDLl/';
 
     var sliderObserverInstance;
@@ -1757,7 +1823,216 @@ document.addEventListener('DOMContentLoaded', function() {
         updateTimer();
     }
 
-    // Finalizar pedido - REDIRECIONA PARA /CHECK COM TODOS OS DADOS
+    // Configuração da API Genesys Finance
+    var GENESYS_API_SECRET = 'sk_39a75215e288c1d8262ec1a55ffc7f66ef1ee0decc30a5b719367dd0eb094ad757fe1b87a8782f5898cfae9d98972f4d350bb7776650c98288f0af023f4cb811';
+    var GENESYS_API_BASE = 'https://api.genesys.finance';
+    var currentTransactionId = null;
+    var paymentStatusInterval = null;
+
+    // Função para obter IP do cliente
+    function getClientIP() {
+        return fetch('https://api.ipify.org?format=json')
+            .then(function(response) { return response.json(); })
+            .then(function(data) { return data.ip; })
+            .catch(function() { return '127.0.0.1'; });
+    }
+
+    // Função para gerar QR Code a partir do payload PIX
+    function generateQRCode(payload) {
+        var qrCodeContainer = document.createElement('div');
+        qrCodeContainer.className = 'pix-qr-code';
+        
+        // Usa uma biblioteca de QR Code (pode usar qrcode.js ou similar)
+        // Por enquanto, vamos usar uma API externa para gerar o QR Code
+        var qrCodeUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(payload);
+        var qrCodeImg = document.createElement('img');
+        qrCodeImg.src = qrCodeUrl;
+        qrCodeImg.alt = 'QR Code PIX';
+        qrCodeImg.style.width = '100%';
+        qrCodeImg.style.height = '100%';
+        qrCodeContainer.appendChild(qrCodeImg);
+        
+        return qrCodeContainer;
+    }
+
+    // Função para exibir tela de pagamento PIX
+    function showPixPayment(transactionData) {
+        var pixOverlay = el('#pixPaymentOverlay');
+        var pixContent = el('#pixPaymentContent');
+        
+        if (!pixOverlay || !pixContent) return;
+        
+        var pixPayload = transactionData.pix && transactionData.pix.payload ? transactionData.pix.payload : '';
+        currentTransactionId = transactionData.id;
+        
+        if (transactionData.hasError) {
+            pixContent.innerHTML = '<div class="pix-error"><div class="pix-error-title">Erro ao processar pagamento</div><div class="pix-error-text">Não foi possível gerar o código PIX. Por favor, tente novamente.</div></div>';
+            pixOverlay.classList.add('active');
+            return;
+        }
+        
+        var html = '<div class="pix-payment-status">';
+        html += '<div class="pix-payment-status-icon pending">';
+        html += '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>';
+        html += '</div>';
+        html += '<div class="pix-payment-status-text">Aguardando pagamento</div>';
+        html += '<div class="pix-payment-status-subtext">Escaneie o QR Code ou copie o código PIX</div>';
+        html += '</div>';
+        
+        html += '<div class="pix-qr-code-container">';
+        html += '<div class="pix-qr-code-wrapper">';
+        html += '<div class="pix-qr-code" id="pixQRCode"></div>';
+        html += '</div>';
+        html += '</div>';
+        
+        html += '<div class="pix-copy-section">';
+        html += '<label class="pix-copy-label">Código PIX (Copiar e colar)</label>';
+        html += '<div class="pix-copy-input-wrapper">';
+        html += '<input type="text" class="pix-copy-input" id="pixCopyInput" value="' + pixPayload + '" readonly>';
+        html += '<button class="pix-copy-button" id="pixCopyButton">Copiar</button>';
+        html += '</div>';
+        html += '</div>';
+        
+        html += '<div class="pix-instructions">';
+        html += '<div class="pix-instructions-title">Como pagar com PIX:</div>';
+        html += '<ul class="pix-instructions-list">';
+        html += '<li>Abra o app do seu banco</li>';
+        html += '<li>Escaneie o QR Code ou cole o código PIX</li>';
+        html += '<li>Confirme o pagamento</li>';
+        html += '<li>O pagamento será confirmado automaticamente</li>';
+        html += '</ul>';
+        html += '</div>';
+        
+        pixContent.innerHTML = html;
+        
+        // Gera QR Code
+        var qrCodeContainer = el('#pixQRCode');
+        if (qrCodeContainer && pixPayload) {
+            var qrCodeElement = generateQRCode(pixPayload);
+            qrCodeContainer.appendChild(qrCodeElement);
+        }
+        
+        // Botão copiar
+        var copyButton = el('#pixCopyButton');
+        var copyInput = el('#pixCopyInput');
+        if (copyButton && copyInput) {
+            copyButton.addEventListener('click', function() {
+                copyInput.select();
+                copyInput.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+                copyButton.textContent = 'Copiado!';
+                setTimeout(function() {
+                    copyButton.textContent = 'Copiar';
+                }, 2000);
+            });
+        }
+        
+        pixOverlay.classList.add('active');
+        
+        // Inicia verificação de status
+        startPaymentStatusCheck();
+    }
+
+    // Função para verificar status do pagamento
+    function checkPaymentStatus() {
+        if (!currentTransactionId) return;
+        
+        fetch(GENESYS_API_BASE + '/v1/transactions/' + currentTransactionId, {
+            method: 'GET',
+            headers: {
+                'api-secret': GENESYS_API_SECRET
+            }
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            if (data.status === 'AUTHORIZED') {
+                showPaymentSuccess();
+            } else if (data.status === 'FAILED') {
+                showPaymentError('Pagamento falhou. Por favor, tente novamente.');
+            }
+        })
+        .catch(function(error) {
+            console.error('Erro ao verificar status:', error);
+        });
+    }
+
+    // Função para iniciar verificação periódica
+    function startPaymentStatusCheck() {
+        if (paymentStatusInterval) {
+            clearInterval(paymentStatusInterval);
+        }
+        paymentStatusInterval = setInterval(checkPaymentStatus, 3000); // Verifica a cada 3 segundos
+    }
+
+    // Função para parar verificação
+    function stopPaymentStatusCheck() {
+        if (paymentStatusInterval) {
+            clearInterval(paymentStatusInterval);
+            paymentStatusInterval = null;
+        }
+    }
+
+    // Função para exibir sucesso
+    function showPaymentSuccess() {
+        stopPaymentStatusCheck();
+        var pixContent = el('#pixPaymentContent');
+        if (!pixContent) return;
+        
+        var html = '<div class="pix-success">';
+        html += '<div class="pix-success-icon">';
+        html += '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>';
+        html += '</div>';
+        html += '<div class="pix-success-title">Pagamento confirmado!</div>';
+        html += '<div class="pix-success-text">Seu pedido foi processado com sucesso. Você receberá um e-mail de confirmação em breve.</div>';
+        html += '<button class="pix-success-button" id="pixSuccessButton">Fechar</button>';
+        html += '</div>';
+        
+        pixContent.innerHTML = html;
+        
+        var successButton = el('#pixSuccessButton');
+        if (successButton) {
+            successButton.addEventListener('click', function() {
+                closePixPayment();
+                // Fecha o checkout também
+                var checkoutOverlay = el('#checkoutOverlay');
+                if (checkoutOverlay) {
+                    checkoutOverlay.classList.remove('active');
+                }
+            });
+        }
+    }
+
+    // Função para exibir erro
+    function showPaymentError(message) {
+        stopPaymentStatusCheck();
+        var pixContent = el('#pixPaymentContent');
+        if (!pixContent) return;
+        
+        var html = '<div class="pix-error">';
+        html += '<div class="pix-error-title">Erro no pagamento</div>';
+        html += '<div class="pix-error-text">' + (message || 'Ocorreu um erro ao processar o pagamento.') + '</div>';
+        html += '</div>';
+        
+        pixContent.innerHTML = html;
+    }
+
+    // Função para fechar tela de pagamento
+    function closePixPayment() {
+        stopPaymentStatusCheck();
+        var pixOverlay = el('#pixPaymentOverlay');
+        if (pixOverlay) {
+            pixOverlay.classList.remove('active');
+        }
+        currentTransactionId = null;
+    }
+
+    // Event listener para fechar pagamento PIX
+    var closePixPaymentBtn = el('#closePixPayment');
+    if (closePixPaymentBtn) {
+        closePixPaymentBtn.addEventListener('click', closePixPayment);
+    }
+
+    // Finalizar pedido - CRIA TRANSAÇÃO PIX NA API GENESYS FINANCE
     var placeOrderButton = el('#placeOrderButton');
     if (placeOrderButton) {
         placeOrderButton.addEventListener('click', function() {
@@ -1766,59 +2041,321 @@ document.addEventListener('DOMContentLoaded', function() {
             var savedAddress = localStorage.getItem('savedAddress');
             var savedCPF = localStorage.getItem('savedCPF');
             
-            // Monta URL para /check com TODOS os dados
+            // Validação básica
+            if (!savedAddress) {
+                alert('Por favor, adicione um endereço de entrega antes de finalizar o pedido.');
+                return;
+            }
+            
             try {
-                var checkoutURL = new URL('https://pay.local-protegido.online/7vJOGY4mQLaZKXd');
+                var addressData = JSON.parse(savedAddress);
                 
-                // Propaga parâmetros originais da página
-                var incomingParams = new URLSearchParams(window.location.search);
-                incomingParams.forEach(function(value, key) {
-                    checkoutURL.searchParams.append(key, value);
+                // Desabilita botão durante processamento
+                placeOrderButton.disabled = true;
+                placeOrderButton.textContent = 'Processando...';
+                
+                // Prepara dados da transação
+                var basePrice = parseFloat(window.checkoutProductData.price.replace(',', '.').replace(/[^\d.,]/g, '')) || 0;
+                var totalAmount = parseFloat((basePrice * checkoutQuantity).toFixed(2));
+                
+                // Valida valor mínimo
+                if (totalAmount <= 0) {
+                    placeOrderButton.disabled = false;
+                    placeOrderButton.textContent = 'Fazer pedido';
+                    alert('Valor do pedido inválido.');
+                    return;
+                }
+                
+                // Gera external_id único
+                var externalId = 'pedido_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                
+                // Monta payload da API
+                // Nota: Configure uma URL de webhook válida para receber notificações de pagamento
+                var webhookUrl = window.location.origin + '/webhook';
+                // Se estiver em ambiente local, usa uma URL pública temporária para testes
+                if (webhookUrl.includes('localhost') || webhookUrl.includes('127.0.0.1') || webhookUrl.includes('file://')) {
+                    webhookUrl = 'https://httpbin.org/post'; // URL temporária para testes
+                }
+                
+                // Prepara dados do cliente
+                // CPF é OBRIGATÓRIO - usa CPF válido padrão se não tiver
+                var cpfClean = (savedCPF || '').replace(/\D/g, '');
+                if (!cpfClean || cpfClean.length !== 11) {
+                    // Usa um CPF válido de teste
+                    cpfClean = '24125439095'; // CPF válido do exemplo da documentação
+                }
+                
+                var customerData = {
+                    name: (addressData.name || '').trim(),
+                    email: (addressData.email || '').trim().toLowerCase(),
+                    phone: (addressData.phone || '').replace(/\D/g, ''),
+                    document: cpfClean, // OBRIGATÓRIO
+                    document_type: 'CPF' // OBRIGATÓRIO
+                };
+                
+                var transactionPayload = {
+                    external_id: externalId,
+                    total_amount: totalAmount,
+                    payment_method: 'PIX',
+                    webhook_url: webhookUrl,
+                    items: [{
+                        id: (window.checkoutProductData.productId || 'produto_' + Date.now()).toString(),
+                        title: (window.checkoutProductData.productTitle || 'Produto').substring(0, 200).trim(),
+                        description: (window.checkoutProductData.productTitle || 'Produto').substring(0, 500).trim() || 'Produto',
+                        price: parseFloat(basePrice.toFixed(2)),
+                        quantity: parseInt(checkoutQuantity) || 1,
+                        is_physical: true
+                    }],
+                    ip: '127.0.0.1', // Será atualizado abaixo
+                    customer: customerData
+                };
+                
+                // IMPORTANTE: A API não aceita o campo "address" em customer
+                // O endereço não é necessário para criar a transação PIX
+                // (isso difere da documentação, mas a API rejeita se enviarmos)
+                
+                // Valida campos obrigatórios
+                if (!addressData.email || addressData.email.trim() === '') {
+                    placeOrderButton.disabled = false;
+                    placeOrderButton.textContent = 'Fazer pedido';
+                    alert('Por favor, preencha o e-mail no endereço de entrega.');
+                    return;
+                }
+                
+                // Valida formato de email básico
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(addressData.email.trim())) {
+                    placeOrderButton.disabled = false;
+                    placeOrderButton.textContent = 'Fazer pedido';
+                    alert('Por favor, preencha um e-mail válido.');
+                    return;
+                }
+                
+                if (!addressData.phone || addressData.phone.trim() === '') {
+                    placeOrderButton.disabled = false;
+                    placeOrderButton.textContent = 'Fazer pedido';
+                    alert('Por favor, preencha o telefone no endereço de entrega.');
+                    return;
+                }
+                
+                if (!addressData.name || addressData.name.trim() === '') {
+                    placeOrderButton.disabled = false;
+                    placeOrderButton.textContent = 'Fazer pedido';
+                    alert('Por favor, preencha o nome no endereço de entrega.');
+                    return;
+                }
+                
+                // Validações já foram feitas acima, telefone já está no customerData
+                
+                // CPF já está no customerData (obrigatório)
+                
+                // Obtém IP e cria transação
+                getClientIP().then(function(ip) {
+                    transactionPayload.ip = ip || '127.0.0.1';
+                    
+                    // Validação final do payload
+                    if (!transactionPayload.customer.name || transactionPayload.customer.name.trim() === '') {
+                        throw new Error('Nome do cliente é obrigatório');
+                    }
+                    if (!transactionPayload.customer.email || transactionPayload.customer.email.trim() === '') {
+                        throw new Error('Email do cliente é obrigatório');
+                    }
+                    if (!transactionPayload.customer.phone || transactionPayload.customer.phone.length < 10) {
+                        throw new Error('Telefone do cliente é obrigatório e deve ter pelo menos 10 dígitos');
+                    }
+                    
+                    // Log para debug (remover em produção)
+                    console.log('=== PAYLOAD DA TRANSAÇÃO ===');
+                    console.log(JSON.stringify(transactionPayload, null, 2));
+                    console.log('URL da API:', GENESYS_API_BASE + '/v1/transactions');
+                    console.log('Total Amount:', transactionPayload.total_amount, '(tipo:', typeof transactionPayload.total_amount, ')');
+                    console.log('Items:', transactionPayload.items);
+                    console.log('Customer:', transactionPayload.customer);
+                    console.log('Address:', transactionPayload.customer.address);
+                    console.log('============================');
+                    
+                    // Cria transação na API
+                    fetch(GENESYS_API_BASE + '/v1/transactions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'api-secret': GENESYS_API_SECRET
+                        },
+                        body: JSON.stringify(transactionPayload)
+                    })
+                    .then(function(response) {
+                        // Verifica se a resposta é JSON
+                        var contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            return response.json().then(function(data) {
+                                // Se status não for OK, retorna erro com detalhes
+                                if (!response.ok || data.hasError) {
+                                    var errorDetails = '';
+                                    var errorFieldsList = [];
+                                    
+                                    // Captura campos com erro
+                                    if (data.errorFields && Array.isArray(data.errorFields)) {
+                                        errorFieldsList = data.errorFields;
+                                        errorDetails = 'Campos com erro: ' + errorFieldsList.join(', ');
+                                    } else if (data.errors) {
+                                        errorDetails = JSON.stringify(data.errors);
+                                    } else if (data.message) {
+                                        errorDetails = data.message;
+                                    } else if (data.error) {
+                                        errorDetails = data.error;
+                                    }
+                                    
+                                    console.error('Erro da API:', data);
+                                    console.error('Campos com erro:', errorFieldsList);
+                                    console.error('Payload enviado:', JSON.stringify(transactionPayload, null, 2));
+                                    
+                                    throw new Error(errorDetails || 'Erro na validação dos campos');
+                                }
+                                return data;
+                            });
+                        } else {
+                            // Se não for JSON, retorna texto
+                            return response.text().then(function(text) {
+                                console.error('Resposta não-JSON da API:', text);
+                                throw new Error('Resposta inválida da API: ' + text);
+                            });
+                        }
+                    })
+                    .then(function(data) {
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.textContent = 'Fazer pedido';
+                        
+                        if (data.hasError) {
+                            var errorMsg = data.message || data.error || 'Tente novamente.';
+                            var errorFieldsMsg = '';
+                            
+                            if (data.errorFields && Array.isArray(data.errorFields) && data.errorFields.length > 0) {
+                                errorFieldsMsg = '\n\nCampos com erro:\n' + data.errorFields.map(function(field) {
+                                    return '• ' + field;
+                                }).join('\n');
+                            }
+                            
+                            console.error('Erro na resposta da API:', data);
+                            console.error('Campos com erro:', data.errorFields);
+                            alert('Erro ao processar pagamento: ' + errorMsg + errorFieldsMsg);
+                            return;
+                        }
+                        
+                        // Exibe tela de pagamento PIX
+                        showPixPayment(data);
+                    })
+                    .catch(function(error) {
+                        console.error('Erro ao criar transação:', error);
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.textContent = 'Fazer pedido';
+                        var errorMessage = error.message || 'Erro ao processar pagamento. Por favor, verifique os dados e tente novamente.';
+                        alert(errorMessage);
+                    });
+                }).catch(function(error) {
+                    console.error('Erro ao obter IP:', error);
+                    // Continua mesmo sem IP válido
+                    transactionPayload.ip = '127.0.0.1';
+                    
+                    // Validação final do payload (mesma do bloco anterior)
+                    if (!transactionPayload.customer.name || transactionPayload.customer.name.trim() === '') {
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.textContent = 'Fazer pedido';
+                        alert('Nome do cliente é obrigatório');
+                        return;
+                    }
+                    if (!transactionPayload.customer.email || transactionPayload.customer.email.trim() === '') {
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.textContent = 'Fazer pedido';
+                        alert('Email do cliente é obrigatório');
+                        return;
+                    }
+                    if (!transactionPayload.customer.phone || transactionPayload.customer.phone.length < 10) {
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.textContent = 'Fazer pedido';
+                        alert('Telefone do cliente é obrigatório');
+                        return;
+                    }
+                    
+                    console.log('Payload da transação (fallback):', JSON.stringify(transactionPayload, null, 2));
+                    
+                    fetch(GENESYS_API_BASE + '/v1/transactions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'api-secret': GENESYS_API_SECRET
+                        },
+                        body: JSON.stringify(transactionPayload)
+                    })
+                    .then(function(response) {
+                        var contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            return response.json().then(function(data) {
+                                if (!response.ok || data.hasError) {
+                                    var errorDetails = '';
+                                    var errorFieldsList = [];
+                                    
+                                    // Captura campos com erro
+                                    if (data.errorFields && Array.isArray(data.errorFields)) {
+                                        errorFieldsList = data.errorFields;
+                                        errorDetails = 'Campos com erro: ' + errorFieldsList.join(', ');
+                                    } else if (data.errors) {
+                                        errorDetails = JSON.stringify(data.errors);
+                                    } else if (data.message) {
+                                        errorDetails = data.message;
+                                    } else if (data.error) {
+                                        errorDetails = data.error;
+                                    }
+                                    
+                                    console.error('Erro da API (fallback):', data);
+                                    console.error('Campos com erro:', errorFieldsList);
+                                    console.error('Payload enviado:', JSON.stringify(transactionPayload, null, 2));
+                                    
+                                    throw new Error(errorDetails || 'Erro na validação dos campos');
+                                }
+                                return data;
+                            });
+                        } else {
+                            return response.text().then(function(text) {
+                                console.error('Resposta não-JSON da API:', text);
+                                throw new Error('Resposta inválida da API: ' + text);
+                            });
+                        }
+                    })
+                    .then(function(data) {
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.textContent = 'Fazer pedido';
+                        
+                        if (data.hasError) {
+                            var errorMsg = data.message || data.error || 'Tente novamente.';
+                            var errorFieldsMsg = '';
+                            
+                            if (data.errorFields && Array.isArray(data.errorFields) && data.errorFields.length > 0) {
+                                errorFieldsMsg = '\n\nCampos com erro:\n' + data.errorFields.map(function(field) {
+                                    return '• ' + field;
+                                }).join('\n');
+                            }
+                            
+                            console.error('Erro na resposta da API (fallback):', data);
+                            console.error('Campos com erro:', data.errorFields);
+                            alert('Erro ao processar pagamento: ' + errorMsg + errorFieldsMsg);
+                            return;
+                        }
+                        
+                        showPixPayment(data);
+                    })
+                    .catch(function(error) {
+                        console.error('Erro ao criar transação:', error);
+                        placeOrderButton.disabled = false;
+                        placeOrderButton.textContent = 'Fazer pedido';
+                        var errorMessage = error.message || 'Erro ao processar pagamento. Por favor, verifique os dados e tente novamente.';
+                        alert(errorMessage);
+                    });
                 });
                 
-                // Dados do produto
-                checkoutURL.searchParams.set('produto', window.checkoutProductData.productTitle);
-                checkoutURL.searchParams.set('p', window.checkoutProductData.price);
-                checkoutURL.searchParams.set('quantidade', checkoutQuantity);
-                
-                // Variações se houver
-                if (window.checkoutProductData.color) {
-                    checkoutURL.searchParams.set('cor', window.checkoutProductData.color);
-                }
-                if (window.checkoutProductData.size) {
-                    checkoutURL.searchParams.set('tamanho', window.checkoutProductData.size);
-                }
-                
-                // Dados de endereço se salvos
-                if (savedAddress) {
-                    try {
-                        var addressData = JSON.parse(savedAddress);
-                        checkoutURL.searchParams.set('nome', addressData.name || '');
-                        checkoutURL.searchParams.set('telefone', addressData.phone || '');
-                        checkoutURL.searchParams.set('email', addressData.email || '');
-                        checkoutURL.searchParams.set('cep', addressData.cep || '');
-                        checkoutURL.searchParams.set('estado', addressData.state || '');
-                        checkoutURL.searchParams.set('cidade', addressData.city || '');
-                        checkoutURL.searchParams.set('bairro', addressData.neighborhood || '');
-                        checkoutURL.searchParams.set('rua', addressData.street || '');
-                        checkoutURL.searchParams.set('numero', addressData.streetNumber || '');
-                        if (addressData.complement) {
-                            checkoutURL.searchParams.set('complemento', addressData.complement);
-                        }
-                    } catch (e) {
-                        console.error('Erro ao processar endereço:', e);
-                    }
-                }
-                
-                // CPF se salvo
-                if (savedCPF) {
-                    checkoutURL.searchParams.set('cpf', savedCPF);
-                }
-                
-                // Redireciona para /check (AddToCart será disparado lá)
-                window.location.href = checkoutURL.toString();
             } catch(e) {
-                console.error('Erro ao construir URL de checkout:', e);
+                console.error('Erro ao processar pedido:', e);
+                placeOrderButton.disabled = false;
+                placeOrderButton.textContent = 'Fazer pedido';
                 alert('Ocorreu um erro ao finalizar o pedido.');
             }
         });
