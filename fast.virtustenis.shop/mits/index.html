@@ -1,17 +1,15 @@
+
   <input type="hidden" id="vitrine-id" value="1" /> <!-- Ajuste o value para o id real da vitrine -->
   <input type="hidden" id="csrf-token" value="" />
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<!-- Mirrored from fast.virtustenis.shop/mits/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Dec 2025 13:43:59 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Shop</title>
-  <script src="https://cdn.tailwindcss.com/"></script>
-  <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="tiktok-config.js"></script>
 
   <style>
@@ -84,8 +82,8 @@
       height: 20px;
       display: block;
       background-color: #f11041ff; /* rose-600, ajuste se quiser outro tom */
-  -webkit-mask-image: url('https://fast.virtustenis.shop/uploads/carrinho-de-compras (1).png');
-  mask-image: url('https://fast.virtustenis.shop/uploads/carrinho-de-compras (1).png');
+  -webkit-mask-image: url('/uploads/carrinho-de-compras (1).png');
+  mask-image: url('/uploads/carrinho-de-compras (1).png');
       -webkit-mask-size: contain;
       mask-size: contain;
       -webkit-mask-repeat: no-repeat;
@@ -107,10 +105,10 @@
       </div>
       <div class="flex items-center space-x-4 mr-[6%]">
         <button aria-label="Compartilhar" class="text-lg text-gray-600 hover:text-black">
-          <img src="../uploads/compartilhar.png" alt="Compartilhar" width="22" height="22" style="display:block;">
+          <img src="/uploads/compartilhar.png" alt="Compartilhar" width="22" height="22" style="display:block;">
         </button>
         <button aria-label="Abrir carrinho" onclick="abrirCarrinho()" class="relative text-lg text-gray-600 hover:text-black">
-          <img src="../uploads/carrinho-de-compras.png" alt="Carrinho" width="22" height="22" style="display:block;">
+          <img src="/uploads/carrinho-de-compras.png" alt="Carrinho" width="22" height="22" style="display:block;">
           <span id="quantidade_x" class="absolute -top-2 -right-3 flex w-5 h-5 bg-rose-600 text-white items-center justify-center rounded-full text-[10px] font-bold">0</span>
         </button>
       </div>
@@ -123,7 +121,7 @@
     <div class="flex justify-between items-center px-3 pb-2">
       <div class="flex items-center space-x-3">
         <div class="relative group">
-          <img id="loja-logo" src="#" data-default-logo="" alt="Logo da loja" class="w-16 h-16 rounded-full object-cover border-2 border-transparent group-hover:border-rose-500 transition" />
+          <img id="loja-logo" src="" data-default-logo="" alt="Logo da loja" class="w-16 h-16 rounded-full object-cover border-2 border-transparent group-hover:border-rose-500 transition" />
         </div>
   <span id="loja-nome" class="font-semibold text-base self-center">Shop</span>
         <input type="hidden" id="vitrine-id" value="1" /> <!-- Ajuste o value para o id real da vitrine -->
@@ -138,7 +136,7 @@
 
     <!-- Banner visual da loja -->
     <div id="banner-loja" class="w-full flex justify-center items-center py-3" style="display:none;">
-      <img id="img-banner-loja" src="#" alt="Banner da Loja" class="rounded-lg shadow max-w-full h-32 object-cover" style="min-width:200px; max-width:900px; width:100%;" loading="lazy">
+      <img id="img-banner-loja" src="" alt="Banner da Loja" class="rounded-lg shadow max-w-full h-32 object-cover" style="min-width:200px; max-width:900px; width:100%;" loading="lazy">
     </div>
   </section>
 
@@ -177,7 +175,7 @@
         <button id="button-comprar" onclick="finalizarCompra()" class="w-full inline-flex items-center justify-center px-4 py-3 bg-pink-500 text-white text-sm font-semibold shadow hover:bg-pink-600 transition" style="border-radius: 12px;">
           <i class="fas fa-shopping-bag mr-2"></i>
           FINALIZAR COMPRA
-          <img id="img_gif" class="hidden ml-2 w-6" src="../../static.wixstatic.com/media/68315b_30dbad1140034a3da3c59278654e1655_mv2.gif" alt="Carregando">
+          <img id="img_gif" class="hidden ml-2 w-6" src="https://static.wixstatic.com/media/68315b_30dbad1140034a3da3c59278654e1655~mv2.gif" alt="Carregando">
         </button>
       </div>
     </div>
@@ -194,7 +192,7 @@
       </div>
       <div id="modal-conteudo" class="hidden">
         <div class="flex flex-row items-start gap-3 w-full">
-          <img src="#" alt="Produto" id="img-solts" style="width:70px; height:70px; max-width:70px; max-height:70px; min-width:60px; min-height:60px; object-fit:contain; background:transparent; border-radius:0.7rem; display:block; margin-top:0; margin-left:0;" loading="lazy">
+          <img src="" alt="Produto" id="img-solts" style="width:70px; height:70px; max-width:70px; max-height:70px; min-width:60px; min-height:60px; object-fit:contain; background:transparent; border-radius:0.7rem; display:block; margin-top:0; margin-left:0;" loading="lazy">
           <div class="flex-1 flex flex-col justify-start items-start pl-1 pt-0">
             <div class="flex items-center mb-1">
               <span id="div_ors_3" class="text-2xl font-extrabold text-rose-600 leading-tight"></span>
@@ -360,18 +358,18 @@
           const baseUrl = /^https?:/i.test(base)
             ? base
             : new URL(base.replace(/^\.\//, ''), document.baseURI).toString();
-          return new URL(raw%2c%20baseUrl.html).toString();
+          return new URL(raw, baseUrl).toString();
         }
-        if (raw.startsWith('https://fast.virtustenis.shop/')) {
-          return new URL(raw%2c%20window.location.origin%20__%20document.html).toString();
+        if (raw.startsWith('/')) {
+          return new URL(raw, window.location.origin || document.baseURI).toString();
         }
-        if (raw.includes('https://fast.virtustenis.shop/')) {
+        if (raw.includes('/')) {
           return new URL(`/${raw.replace(/^\/+/, '')}`, window.location.origin || document.baseURI).toString();
         }
-        return new URL(raw%2c%20document.html).toString();
+        return new URL(raw, document.baseURI).toString();
       } catch (error) {
         console.warn('Nao foi possivel resolver a midia:', path, error);
-        return raw.startsWith('https://fast.virtustenis.shop/') ? raw : `/${raw}`;
+        return raw.startsWith('/') ? raw : `/${raw}`;
       }
     }
 
@@ -927,7 +925,7 @@
         variacoes,
         checkoutUrl: 'checkout.html?produto_id=' + encodeURIComponent(produto.id ?? ''),
         // Página do produto (relativa) — usada para abrir a página de detalhe
-        pageUrl: (produto.slug ? (produto.slug + '/produto.html?produto_id=' + encodeURIComponent(produto.id ?? '')) : ('produtod701.html?produto_id=' + encodeURIComponent(produto.id ?? '')))
+        pageUrl: (produto.slug ? (produto.slug + '/produto.html?produto_id=' + encodeURIComponent(produto.id ?? '')) : ('produto.html?produto_id=' + encodeURIComponent(produto.id ?? '')))
       };
     }
 
@@ -1169,7 +1167,5 @@
     });
   </script>
 </body>
-
-<!-- Mirrored from fast.virtustenis.shop/mits/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Dec 2025 13:44:01 GMT -->
 </html>
 
