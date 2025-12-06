@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+
+<!-- Mirrored from fast.virtustenis.shop/mits/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Dec 2025 13:44:13 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <link rel="stylesheet" href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<!-- TikTok Pixel Code Start -->
+<script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++)ttq.setAndDefer(ttq, ttq.methods[i]); ttq.instance = function (t) {
+      for (
+        var e = ttq._i[t][], n = 0; n < ttq.methods.length; n++)ttq.setAndDefer(e, ttq.methods[n]); return e
+    }, ttq.load = function (e, n) {
+      var r = "../../analytics.tiktok.com/i18n/pixel/events.js", o = n && n.partner; ttq._i = ttq._i{ }, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t{ }, ttq._t[e] = +new Date, ttq._o = ttq._o{ }, ttq._o[e] = n || {}; n = document.createElement("script")
+        ; n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t; e = document.getElementsByTagName("script")[0]; e.parentNode.insertBefore(n, e)
+    };
+
+
+    ttq.load('D43IILBC77U9LG1FTVR0');
+    ttq.page();
+  }(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+ <!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t][],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="../../analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t{},ttq._t[e]=+new Date,ttq._o=ttq._o{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+  ttq.load('D40N0FRC77U816ESBHN0');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
+    <style>
+        .toast-center {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(.98);
+            min-width: 240px;
+            max-width: 90vw;
+            background: #3a3a3a;
+            color: #fff;
+            padding: 16px 20px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .28);
+            z-index: 9999;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity .25s ease, transform .25s ease;
+            pointer-events: none;
+        }
+
+        .toast-center.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .toast-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-grid;
+            place-items: center;
+        }
+
+        .toast-icon.success {
+            background: #2ecc71;
+        }
+
+        .toast-icon.error {
+            background: #e74c3c;
+        }
+
+        .toast-icon.info {
+            background: #db3450;
+        }
+
+        .toast-text {
+            font-weight: 600;
+        }
+
+        .toast-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: #fff;
+        }
+
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="javascript:history.back()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-lg font-semibold text-gray-900">Carrinho</h1>
+                <div style="position: relative; display: flex; align-items: center;">
+                    <button onclick="cart.clear()" class="text-gray-600 hover:text-gray-900 mr-2">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <a href="cart.html" style="position: relative; text-decoration: none; color: inherit; display: inline-flex; align-items: center;">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span id="cart-count-header" style="position: absolute; top: -7px; right: -10px; background: #ff2d55; color: white; border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 10px;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 pt-20 pb-32">
+        <div id="cart-items" class="space-y-4">
+            <!-- Itens do carrinho serão inseridos aqui -->
+        </div>
+        <div id="empty-cart" class="hidden text-center py-12">
+            <i class="fas fa-shopping-cart text-4xl text-gray-300 mb-4"></i>
+            <p class="text-gray-500">Seu carrinho está vazio</p>
+            <a href="index.html" class="inline-block mt-4 px-6 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700">Continuar Comprando</a>
+        </div>
+    </main>
+
+    <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-lg-up p-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-gray-600">Total:</span>
+                <span id="cart-total" class="text-xl font-semibold">R$ 0,00</span>
+            </div>
+            <button onclick="finalizarCompra()"
+                class="w-full bg-rose-600 text-white py-3 rounded-lg font-semibold hover:bg-rose-700 transition-colors">
+                Finalizar Compra
+            </button>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script>
+    // Carrega produtos do sistema para mapear detalhes no carrinho
+    let produtosSistema = [];
+    fetch('produtos.json')
+        .then(resp => resp.json())
+        .then(data => { produtosSistema = data; })
+        .catch(() => { produtosSistema = []; });
+    
+    // Busca detalhes do produto pelo id/variação
+    function getProdutoDetalhado(item) {
+        if (!produtosSistema.length) return { ...item, variacaoInfo: item.variacaoInfo || '' };
+        const prod = produtosSistema.find(p => String(p.id) === String(item.produtoId));
+        if (!prod) return { ...item, variacaoInfo: item.variacaoInfo || '' };
+        let variacao = null;
+        if (item.variacaoId && prod.variacoes && prod.variacoes.length) {
+            variacao = prod.variacoes.find(v => String(v.id) === String(item.variacaoId));
+        }
+        const tituloPreferido = (item.titulo && item.titulo.trim())
+            ? item.titulo
+            : (variacao ? (variacao.titulo || '') : (prod.titulo || ''));
+        const precoPreferido = (typeof item.preco === 'number' && !isNaN(item.preco))
+            ? item.preco
+            : (variacao && typeof variacao.preco === 'number' ? variacao.preco : prod.preco);
+        const imagemPreferida = item.imagem || (variacao && variacao.imagem) || (prod.fotos && prod.fotos[0]) || '';
+        return {
+            ...item,
+            produtoTitulo: prod.titulo || item.produtoTitulo || '',
+            titulo: tituloPreferido,
+            preco: precoPreferido,
+            imagem: imagemPreferida,
+            variacaoInfo: variacao ? (variacao.info || variacao.titulo || '') : (item.variacaoInfo || ''),
+        };
+    }
+    </script>
+    <script>
+        function showCenterToast(message, type = 'success', duration = 2000) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-center';
+            const icons = {
+                success: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`,
+                error: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>`,
+                info: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>`
+            };
+            const iconEl = `<span class="toast-icon ${type}">${icons[type] || icons.info}</span>`;
+            toast.innerHTML = `${iconEl}<span class="toast-text">${message}</span>`;
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 250);
+            }, duration);
+        }
+
+        function formatBRL(value) {
+            const number = Number(value || 0);
+            return number.toFixed(2).replace('.', ',');
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            const emptyCart = document.getElementById('empty-cart');
+            const totalEl = document.getElementById('cart-total');
+
+            // Atualiza contador do carrinho sempre que renderizar
+            if (window.cart && typeof window.cart.updateCartCount === 'function') {
+                window.cart.updateCartCount();
+            }
+
+            if (!container || !emptyCart || !totalEl) return;
+
+            container.innerHTML = '';
+
+            if (cart.items.length === 0) {
+                container.classList.add('hidden');
+                emptyCart.classList.remove('hidden');
+                totalEl.textContent = 'R$ 0,00';
+                return;
+            }
+
+            container.classList.remove('hidden');
+            emptyCart.classList.add('hidden');
+
+
+            cart.items.forEach((item, index) => {
+                const detalhado = getProdutoDetalhado(item);
+                const subtotal = detalhado.preco * detalhado.quantidade;
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-lg shadow p-4';
+                card.innerHTML = `
+                    <div class="flex gap-4">
+                        <img src="${detalhado.imagem || 'placeholder.jpg'}" alt="${detalhado.titulo}" class="w-24 h-24 object-cover rounded">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-semibold text-gray-900">${
+                                    (function(){
+                                        const base = detalhado.produtoTitulo || '';
+                                        const varTit = detalhado.titulo || '';
+                                        if (base && varTit && base !== varTit) return base + ' - ' + varTit;
+                                        return base || varTit || '';
+                                    })()
+                                }</h3>
+                                <button onclick="cart.removeItem(${index})" class="text-gray-400 hover:text-red-500">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            ${detalhado.variacaoInfo ? `<p class='text-xs text-gray-500 mb-1'>Variação: ${detalhado.variacaoInfo}</p>` : ''}
+                            <p class="text-sm text-gray-500 mt-1">Preço: R$ ${formatBRL(detalhado.preco)}</p>
+                            <p class="text-sm text-gray-500">Subtotal: R$ ${formatBRL(subtotal)}</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="cart.updateQuantity(${index}, ${detalhado.quantidade - 1})" class="w-8 h-8 flex items-center justify-center border rounded">-</button>
+                                <span class="w-8 text-center">${detalhado.quantidade}</span>
+                                <button onclick="cart.updateQuantity(${index}, ${detalhado.quantidade + 1})" class="w-8 h-8 flex items-center justify-center border rounded">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            totalEl.textContent = `R$ ${formatBRL(cart.getTotal())}`;
+        }
+
+        function finalizarCompra() {
+            if (cart.items.length === 0) {
+                showCenterToast('Adicione itens ao carrinho primeiro', 'error');
+                return;
+            }
+            // Salva o carrinho na sessão para o checkout
+            sessionStorage.setItem('checkoutCarrinho', JSON.stringify(cart.items));
+            window.location.href = 'checkout.html';
+        }
+
+        // Inicializa o carrinho e renderiza
+        document.addEventListener('DOMContentLoaded', () => {
+            cart.init();
+            renderCart();
+        });
+
+        // Caso outro script/aba altere o localStorage, atualiza a UI
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'carrinho') {
+                try { cart.items = JSON.parse(e.newValue || '[]'); } catch(_) { cart.items = []; }
+                renderCart();
+            }
+        });
+    </script>
+</body>
+
+
+<!-- Mirrored from fast.virtustenis.shop/mits/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Dec 2025 13:44:13 GMT -->
+</html>
